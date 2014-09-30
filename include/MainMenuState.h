@@ -12,15 +12,15 @@ private:
 protected:
 
 public:
-	MainMenuState::MainMenuState(void);
-	~MainMenuState::MainMenuState(void);
+	MainMenuState(void);
+	~MainMenuState(void);
 
 	void Init();
 	void Update(float deltaTime, StateMachine* a_pSM);
 	void Draw();
-	void Destory();
+	void Destroy();
 
-}
+};
 
 
 #endif

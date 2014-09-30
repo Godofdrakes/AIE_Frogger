@@ -1,19 +1,17 @@
 #include "StateMachine.h"
 
-
 StateMachine::StateMachine(void) {}
-
 
 StateMachine::~StateMachine(void) {}
 
 void StateMachine::PushState(BaseState* gameState) {
-	stateStack.pushback(gameState);
+	stateStack.push_back(gameState);
 	gameState->Init();
 
 }
 
 BaseState* StateMachine::PopState() {
-	BaseState* lastState = stateStack.Back();
+	BaseState* lastState = stateStack.back();
 	stateStack.pop_back();
 	lastState->Destroy();
 	return lastState;
@@ -38,6 +36,6 @@ void StateMachine::Update(float deltaTime) {
 }
 
 void StateMachine::Draw() {
-	stateStack.back->Draw();
+	stateStack.back()->Draw();
 
 }

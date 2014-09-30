@@ -6,8 +6,8 @@ class StateMachine;
 class BaseState
 {
 public:
-	BaseState(void);
-	~BaseState(void);
+	BaseState(void) {};
+	~BaseState(void) {};
 
 	virtual void Init() = 0;
 	virtual void Update(float deltaTime, StateMachine* a_pSM) = 0;

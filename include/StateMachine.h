@@ -1,8 +1,10 @@
 #ifndef _STATEMACHINE_H_
 #define _STATEMACHINE_H_
 
-class StateMachine
-{
+#include "BaseState.h"
+#include <list>
+
+class StateMachine {
 public:
 	StateMachine();
 	~StateMachine();

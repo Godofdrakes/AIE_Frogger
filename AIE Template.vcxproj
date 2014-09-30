@@ -91,9 +91,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MainMenuState.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BaseState.h" />
+    <ClInclude Include="include\MainMenuState.h" />
     <ClInclude Include="include\StateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
