@@ -1,5 +1,5 @@
 ﻿#include "AIE.h"
-#include "godqol.h"
+#include "godqol.h" //https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
 #include <iostream>
 #include <string>
 #include <list>
