@@ -10,11 +10,11 @@
 
 class GameState : public BaseState {
 private:
-	Player* player;
+	Player* player;/*
 	Entity* lane_A[3]; // Slower car lane
 	Entity* lane_B[3]; // Faster car lane
 	Entity* lane_C[3]; // River
-	Entity* frogs[5]; // Each frog that muct be collected
+	Entity* frogs[5]; // Each frog that muct be collected*/
 
 protected:
 
@@ -34,8 +34,8 @@ public:
 	void DestroyCars();
 	void DestroyPlayer();
 
-	void UpdateCars();
-	void UpdatePlayer();
+	void UpdateCars(float deltaTime);
+	void UpdatePlayer(float deltaTime);
 
 };
 

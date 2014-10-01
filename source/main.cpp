@@ -32,7 +32,7 @@ int main( int argc, char* argv[] ) {
         float deltaTime = GetDeltaTime();
 
         state.Update(deltaTime);
-		    state.Draw();
+		    if(!doExit) {state.Draw();}
 
 
     } while(!FrameworkUpdate() && !doExit);
