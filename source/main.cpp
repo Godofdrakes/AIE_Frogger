@@ -1,4 +1,5 @@
 ﻿#include "AIE.h"
+#include "godqol.h"
 #include <iostream>
 #include <string>
 #include <list>
@@ -11,6 +12,9 @@ extern const string WINDOW_NAME = "AIE_Frogger";
 extern const unsigned int WINDOW_W = 600;
 extern const unsigned int WINDOW_H = 800;
 extern bool doExit = false;
+
+//Class containing Helper functions
+GodQOL HELPER;
 
 int main( int argc, char* argv[] )
 {

@@ -36,6 +36,9 @@
     <ClCompile Include="source\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\StateMachine.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
