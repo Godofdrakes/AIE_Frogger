@@ -2,6 +2,7 @@
 
 extern const unsigned int WINDOW_W;
 extern const unsigned int WINDOW_H;
+extern bool doExit;
 
 MainMenuState::MainMenuState(void) {}
 MainMenuState::~MainMenuState(void) {}
@@ -14,6 +15,9 @@ void MainMenuState::Init() {
 
 void MainMenuState::Update(float deltaTime, StateMachine* a_pSM) {
 	MoveSprite(iArcadeMarquee->sprite, iArcadeMarquee->x, iArcadeMarquee->y);
+	if (IsKeyDown(GLFW_KEY_ESCAPE)) {
+		delete a_pSM->PopState();
+	}
 }
 
 void MainMenuState::Draw() {
@@ -22,4 +26,5 @@ void MainMenuState::Draw() {
 
 void MainMenuState::Destroy() {
 	DestroySprite(iArcadeMarquee->sprite);
+	doExit = true;
 }
