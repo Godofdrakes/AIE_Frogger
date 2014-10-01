@@ -90,13 +90,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Entity.cpp" />
+    <ClCompile Include="source\GameState.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MainMenuState.cpp" />
+    <ClCompile Include="source\Player.cpp" />
+    <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseState.h" />
+    <ClInclude Include="include\Car.h" />
+    <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\MainMenuState.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\StateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

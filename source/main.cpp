@@ -8,7 +8,7 @@
 using namespace std;
 
 extern const string WINDOW_NAME = "AIE_Frogger";
-extern const unsigned int WINDOW_W = 400;
+extern const unsigned int WINDOW_W = 600;
 extern const unsigned int WINDOW_H = 800;
 
 int main( int argc, char* argv[] )

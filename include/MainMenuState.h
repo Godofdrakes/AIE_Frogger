@@ -4,10 +4,11 @@
 #include "AIE.h"
 #include "BaseState.h"
 #include "StateMachine.h"
+#include "Sprite.h"
 
 class MainMenuState : public BaseState {
 private:
-	unsigned int iArcadeMarquee;
+	Sprite* iArcadeMarquee;
 
 protected:
 

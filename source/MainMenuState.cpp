@@ -7,17 +7,19 @@ MainMenuState::MainMenuState(void) {}
 MainMenuState::~MainMenuState(void) {}
 
 void MainMenuState::Init() {
-	iArcadeMarquee = CreateSprite( "./images/Space-Invaders-Marquee.png", WINDOW_W, WINDOW_H, true );
+	iArcadeMarquee = new Sprite();
+	iArcadeMarquee->SetSprite( CreateSprite( "./images/Space-Invaders-Marquee.png", WINDOW_W, WINDOW_H, true ), WINDOW_W, WINDOW_H );
+	iArcadeMarquee->SetPos(WINDOW_W/2, WINDOW_H/2);
 }
 
 void MainMenuState::Update(float deltaTime, StateMachine* a_pSM) {
-	MoveSprite(iArcadeMarquee, WINDOW_W/2, WINDOW_H/2);
+	MoveSprite(iArcadeMarquee->sprite, iArcadeMarquee->x, iArcadeMarquee->y);
 }
 
 void MainMenuState::Draw() {
-	DrawSprite(iArcadeMarquee);
+	DrawSprite(iArcadeMarquee->sprite);
 }
 
 void MainMenuState::Destroy() {
-	DestroySprite(iArcadeMarquee);
+	DestroySprite(iArcadeMarquee->sprite);
 }
