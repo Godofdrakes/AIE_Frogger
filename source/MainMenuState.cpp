@@ -9,22 +9,23 @@ MainMenuState::~MainMenuState(void) {}
 
 void MainMenuState::Init() {
 	iArcadeMarquee = new Sprite();
-	iArcadeMarquee->SetSprite( CreateSprite( "./images/Space-Invaders-Marquee.png", WINDOW_W, WINDOW_H, true ), WINDOW_W, WINDOW_H );
-	iArcadeMarquee->SetPos(WINDOW_W/2, WINDOW_H/2);
+	iArcadeMarquee->W(WINDOW_W); iArcadeMarquee->H(WINDOW_H);
+	iArcadeMarquee->SpriteID(CreateSprite("./images/Space-Invaders-Marquee.png", iArcadeMarquee->W(), iArcadeMarquee->H(), true));
+	iArcadeMarquee->X(WINDOW_W/2); iArcadeMarquee->Y(WINDOW_H/2);
 }
 
 void MainMenuState::Update(float deltaTime, StateMachine* a_pSM) {
-	MoveSprite(iArcadeMarquee->sprite, iArcadeMarquee->x, iArcadeMarquee->y);
-	if (IsKeyDown(GLFW_KEY_ESCAPE)) {
-		delete a_pSM->PopState();
-	}
+	MoveSprite(iArcadeMarquee->SpriteID(), iArcadeMarquee->X(), iArcadeMarquee->Y());
+	
+	if (IsKeyDown(GLFW_KEY_SPACE)) { a_pSM->PushState( new GameState() ); }
+	if (IsKeyDown(GLFW_KEY_ESCAPE)) { delete a_pSM->PopState(); }
 }
 
 void MainMenuState::Draw() {
-	DrawSprite(iArcadeMarquee->sprite);
+	DrawSprite(iArcadeMarquee->SpriteID());
 }
 
 void MainMenuState::Destroy() {
-	DestroySprite(iArcadeMarquee->sprite);
+	DestroySprite(iArcadeMarquee->SpriteID());
 	doExit = true;
 }

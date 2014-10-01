@@ -4,16 +4,25 @@
 class Sprite {
 private:
 protected:
-public:
-	float x, y;
+	float x, y; // Lowercase is the variable ( x ), uppercase is the function ( X() )
 	int w, h;
-	unsigned sprite;
+	int spriteID;
 
+public:
 	Sprite(void);
 	~Sprite(void);
 
-	void SetSprite(int set_srpite, int set_w, int set_h); // Used as func(CreateSprite(), w, h) to hold the sprite's ID and dimentions.
-	void SetPos(int set_x, int set_y);
+	float X();
+	float Y();
+	int W();
+	int H();
+	int SpriteID();
+
+	void X(float set_x);
+	void Y(float set_y);
+	void W(int set_w);
+	void H(int set_h);
+	void SpriteID(int set_sprite);
 };
 
 #endif

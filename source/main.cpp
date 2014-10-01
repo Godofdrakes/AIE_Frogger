@@ -16,8 +16,7 @@ extern bool doExit = false;
 //Class containing Helper functions
 GodQOL HELPER;
 
-int main( int argc, char* argv[] )
-{
+int main( int argc, char* argv[] ) {
     //Init the AIE framework
     Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());
     SetBackgroundColour(SColour(0, 0, 0, 255));
@@ -33,7 +32,7 @@ int main( int argc, char* argv[] )
         float deltaTime = GetDeltaTime();
 
         state.Update(deltaTime);
-		if (!doExit) { state.Draw(); }
+		    state.Draw();
 
 
     } while(!FrameworkUpdate() && !doExit);

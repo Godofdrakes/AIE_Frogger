@@ -5,6 +5,7 @@
 #include "BaseState.h"
 #include "StateMachine.h"
 #include "Sprite.h"
+#include "GameState.h"
 
 class MainMenuState : public BaseState {
 private:
