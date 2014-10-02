@@ -18,6 +18,7 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 
 }
 
+// Didn't split the draw functions into seperate functions cause all the objects are based off of sprite so the method of drawing them won't change
 void GameState::Draw() {
 	DrawSprite(player->SpriteID());/*
 	for(int i=0; i<3; ++i) { DrawSprite( lane_A[i]->SpriteID() ); }
@@ -35,7 +36,7 @@ void GameState::Destroy() {
 
 void GameState::MakePlayer() {
 	player = new Player();
-	player->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", player->W(), player->H(), true) );
+	player->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", player->W(), player->H(), player->DrawFromCenter()) );
 
 }
 
@@ -56,17 +57,17 @@ void GameState::DestroyPlayer() {
 void GameState::MakeCars() {/*
 	for(int i=0; i<3; ++i) {
 		lane_A[i] = new Entity();
-		lane_A[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_A[i]->W(), lane_A[i]->H(), true) );
+		lane_A[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_A[i]->W(), lane_A[i]->H(), lane_A[i]->DrawFromCenter()) );
 	}
 
 	for(int i=0; i<3; ++i) {
 		lane_B[i] = new Entity();
-		lane_B[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_B[i]->W(), lane_B[i]->H(), true) );
+		lane_B[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_B[i]->W(), lane_B[i]->H(), lane_B[i]->DrawFromCenter()) );
 	}
 
 	for(int i=0; i<3; ++i) {
 		lane_C[i] = new Entity();
-		lane_C[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_C[i]->W(), lane_C[i]->H(), true) );
+		lane_C[i]->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", lane_C[i]->W(), lane_C[i]->H(), lane_C[i]->DrawFromCenter()) );
 	}*/
 
 }

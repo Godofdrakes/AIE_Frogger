@@ -22,20 +22,21 @@ public:
 	GameState(void);
 	~GameState(void);
 
-	void Init();
-	void Update(float deltaTime, StateMachine* a_pSM);
+	void Init(); // Create all objects
+	void Update(float deltaTime, StateMachine* a_pSM); // Call update functions for all objects
 
-	void Draw();
-	void Destroy();
+	void Draw(); // Draw all objects
+	void Destroy(); // Call destroy functions for all objects
 
-	void MakeCars();
 	void MakePlayer();
-
-	void DestroyCars();
+	void UpdatePlayer(float deltaTime);
 	void DestroyPlayer();
 
+	// Currently I'm just making everything cars, but I'll have logs and a water object for the rivver later
+	void MakeCars();
 	void UpdateCars(float deltaTime);
-	void UpdatePlayer(float deltaTime);
+	void DestroyCars();
+
 
 };
 
