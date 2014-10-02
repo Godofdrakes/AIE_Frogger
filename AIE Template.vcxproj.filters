@@ -39,6 +39,9 @@
     <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\TextureStrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\StateMachine.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextureStrings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

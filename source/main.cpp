@@ -5,6 +5,7 @@
 #include <list>
 #include "StateMachine.h"
 #include "MainMenuState.h"
+#include "TextureStrings.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ extern bool doExit = false;
 //Class containing Helper functions
 GodQOL HELPER;
 
+// Object with lists of textures
+TextureStrings Textures;
+
 int main( int argc, char* argv[] ) {
     //Init the AIE framework
     Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());
@@ -25,8 +29,7 @@ int main( int argc, char* argv[] ) {
     state.PushState( new MainMenuState() );
 
     //Game Loop
-    do
-    {
+    do {
 
         ClearScreen();
         float deltaTime = GetDeltaTime();
