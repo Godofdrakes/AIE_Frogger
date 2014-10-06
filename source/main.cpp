@@ -11,7 +11,7 @@ using namespace std;
 
 extern const string WINDOW_NAME = "AIE_Frogger";
 extern const int TILE_X = 32;
-extern const int TILE_Y = 32; // The X and Y dimentions of a single tile, which will be used to make the main game's map.
+extern const int TILE_Y = 32; // The X and Y dimentions of a single tile, which will be used to make the main game's map and is the base size of every sprite.
 extern const unsigned int WINDOW_W = TILE_X*15; // 15 tiles wide
 extern const unsigned int WINDOW_H = TILE_Y*25; // and 25 tall
 

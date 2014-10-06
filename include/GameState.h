@@ -2,6 +2,7 @@
 #define _GAMESTATE_H_
 
 #include <vector>
+#include <iostream>
 #include "BaseState.h"
 #include "Player.h"
 #include "Entity.h"
@@ -17,8 +18,9 @@ extern const unsigned int WINDOW_H;
 class GameState : public BaseState {
 private:
 	Player* player;
-	Entity* slowLane_L[3]; // Slower car lane moving left
-	//Car* slowLane_R[3]; // Slower car lane moving right
+	Sprite* movementMarker; // A small sprite placed behind the player to help visualize where they can move.
+	Car* slowLane_L[4]; // Slower car lane moving left
+	Car* slowLane_R[4]; // Slower car lane moving right
 	Sprite* map[375]; // The level's map, hardcoded for now. Might try and find a way to make this resizeable.
 
 
@@ -47,6 +49,9 @@ public:
 	void MakeMap();
 	void UpdateMap();
 	void DestroyMap();
+
+	// Collision checking
+	bool CheckHit(Player &thePlayer, Car &theCar); // Is player touching car
 
 
 };

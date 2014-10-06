@@ -6,7 +6,7 @@ Sprite::Sprite(void) {
 	x = 32;
 	y = 32;
 	spriteID = -1;
-	drawFromCenter = false;
+	drawFromCenter = true;
 }
 
 Sprite::~Sprite(void) {}
