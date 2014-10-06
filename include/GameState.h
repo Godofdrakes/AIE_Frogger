@@ -15,6 +15,8 @@ private:
 	Entity* lane_B[3]; // Faster car lane
 	Entity* lane_C[3]; // River
 	Entity* frogs[5]; // Each frog that muct be collected*/
+	Sprite* map[375]; // The level's map, hardcoded for now. Might try and find a way to make this resizeable.
+
 
 protected:
 
@@ -36,6 +38,11 @@ public:
 	void MakeCars();
 	void UpdateCars(float deltaTime);
 	void DestroyCars();
+
+	// Functions for the level's map
+	void MakeMap();
+	void UpdateMap();
+	void DestroyMap();
 
 
 };

@@ -5,6 +5,7 @@ GameState::~GameState(void) {}
 
 void GameState::Init() {
 	//MakeCars();
+	MakeMap();
 	MakePlayer();
 
 }
@@ -12,6 +13,7 @@ void GameState::Init() {
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 	//UpdateCars(deltaTime);
 	UpdatePlayer(deltaTime);
+	UpdateMap();
 	if (IsKeyDown(GLFW_KEY_TAB)) {
 		delete a_pSM->PopState();;
 	}
@@ -20,14 +22,16 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 
 // Didn't split the draw functions into seperate functions cause all the objects are based off of sprite so the method of drawing them won't change
 void GameState::Draw() {
-	DrawSprite(player->SpriteID());/*
-	for(int i=0; i<3; ++i) { DrawSprite( lane_A[i]->SpriteID() ); }
-	for(int i=0; i<3; ++i) { DrawSprite( lane_B[i]->SpriteID() ); }
-	for(int i=0; i<3; ++i) { DrawSprite( lane_C[i]->SpriteID() ); }*/
+	for(int count = 0; count < 375; ++count) DrawSprite( map[count]->SpriteID() );/*
+	for(int i=0; i<3; ++i) DrawSprite( lane_A[i]->SpriteID() );
+	for(int i=0; i<3; ++i) DrawSprite( lane_B[i]->SpriteID() );
+	for(int i=0; i<3; ++i) DrawSprite( lane_C[i]->SpriteID() );*/
+	DrawSprite(player->SpriteID());
 }
 
 void GameState::Destroy() {
 	//DestroyCars();
+	DestroyMap();
 	DestroyPlayer();
 
 }
@@ -36,7 +40,7 @@ void GameState::Destroy() {
 
 void GameState::MakePlayer() {
 	player = new Player();
-	player->SpriteID( CreateSprite("./images/Space-Invaders-Marquee.png", player->W(), player->H(), player->DrawFromCenter()) );
+	player->SpriteID( CreateSprite("./images/pieceRed_border06.png", player->W(), player->H(), player->DrawFromCenter()) );
 
 }
 
@@ -95,4 +99,32 @@ void GameState::DestroyCars() {/*
 		delete lane_C[i];
 	}*/
 
+}
+
+/* Map fucntions */
+
+void GameState::MakeMap() {
+	int count = 0; // Which map tile are we currently working on?
+
+	for(int column = 0; column < 15; ++column) {
+		for(int row = 0; row < 25; ++row) {
+			map[count] = new Sprite();
+			map[count]->X( column*32 );
+			map[count]->Y( row*32 );
+			map[count]->DrawFromCenter(false);
+			map[count]->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile1.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
+			count++; // Be sure to increment for the next tile.
+		}
+	}
+}
+
+void GameState::UpdateMap() {
+	for(int count = 0; count < 375; ++count) MoveSprite( map[count]->SpriteID(), map[count]->X(), map[count]->Y() );
+}
+
+void GameState::DestroyMap() {
+	for(int count = 0; count < 375; ++count) {
+		DestroySprite( map[count]->SpriteID() );
+		delete map[count];
+	}
 }
