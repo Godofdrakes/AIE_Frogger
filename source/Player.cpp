@@ -31,10 +31,10 @@ void Player::Move(float deltaTime) {
 	}
 
 
-	if(x+w>xMax) { x = xMax-h;} // Check X Min/Max
+	if(x+w>xMax) { x = xMax-w;} // Check X Min/Max
 	else if(x<0) { x = 0;}
 
-	if(y+h>yMax) { y = yMax-w;} // Check Y Min/Max
+	if(y+h>yMax) { y = yMax-h;} // Check Y Min/Max
 	else if(y<0) { y = 0;}
 
 }

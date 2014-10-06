@@ -59,14 +59,17 @@ void GameState::MakeSlowCars() {
 	for(int i=0; i<3; ++i) {
 		slowLane_L[i] = new Car();
 		slowLane_L[i]->Y(3*TILE_Y); // Third row of tiles from the bottom
-		slowLane_L[i]->Y((i*3)*TILE_X);
+		slowLane_L[i]->X((i*3)*TILE_X);
 		slowLane_L[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", slowLane_L[i]->W(), slowLane_L[i]->H(), slowLane_L[i]->DrawFromCenter()) );
 	}
 
 }
 
 void GameState::UpdateSlowCars(float deltaTime) {
-	for(int i=0; i<3; ++i) { MoveSprite(slowLane_L[i]->SpriteID(), slowLane_L[i]->X(), slowLane_L[i]->Y()); }
+	for(int i=0; i<3; ++i) {
+		slowLane_L[i]->Move(deltaTime);
+		MoveSprite(slowLane_L[i]->SpriteID(), slowLane_L[i]->X(), slowLane_L[i]->Y());
+	}
 
 }
 
