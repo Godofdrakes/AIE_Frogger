@@ -5,16 +5,20 @@
 #include "BaseState.h"
 #include "Player.h"
 #include "Entity.h"
+#include "Car.h"
 #include "AIE.h"
 #include "StateMachine.h"
 
+extern const int TILE_X;
+extern const int TILE_Y;
+extern const unsigned int WINDOW_W;
+extern const unsigned int WINDOW_H;
+
 class GameState : public BaseState {
 private:
-	Player* player;/*
-	Entity* lane_A[3]; // Slower car lane
-	Entity* lane_B[3]; // Faster car lane
-	Entity* lane_C[3]; // River
-	Entity* frogs[5]; // Each frog that muct be collected*/
+	Player* player;
+	Entity* slowLane_L[3]; // Slower car lane moving left
+	//Car* slowLane_R[3]; // Slower car lane moving right
 	Sprite* map[375]; // The level's map, hardcoded for now. Might try and find a way to make this resizeable.
 
 
@@ -35,9 +39,9 @@ public:
 	void DestroyPlayer();
 
 	// Currently I'm just making everything cars, but I'll have logs and a water object for the rivver later
-	void MakeCars();
-	void UpdateCars(float deltaTime);
-	void DestroyCars();
+	void MakeSlowCars();
+	void UpdateSlowCars(float deltaTime);
+	void DestroySlowCars();
 
 	// Functions for the level's map
 	void MakeMap();

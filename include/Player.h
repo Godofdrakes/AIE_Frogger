@@ -2,7 +2,6 @@
 #define _PLAYER_H_
 
 #include "AIE.h"
-#include "Sprite.h"
 #include "Entity.h"
 
 extern const unsigned int WINDOW_W;

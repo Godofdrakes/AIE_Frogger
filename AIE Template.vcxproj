@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp" />
+    <ClCompile Include="source\Car.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\GameState.cpp" />
     <ClCompile Include="source\main.cpp" />

@@ -17,9 +17,6 @@ extern const unsigned int WINDOW_H = TILE_Y*25; // and 25 tall
 
 extern bool doExit = false; // When true, close the program
 
-extern TextureStrings Textures; // Object with lists of each texture
-extern GodQOL HELPER; //Class containing Helper functions
-
 int main( int argc, char* argv[] ) {
     //Init the AIE framework
     Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());

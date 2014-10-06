@@ -10,8 +10,8 @@ protected:
 	int xMax, yMax;
 
 public:
-	Entity::Entity(void);
-	Entity::~Entity(void);
+	Entity(void);
+	~Entity(void);
 
 	virtual void Move(float deltaTime) = 0;
 };

@@ -9,7 +9,7 @@ Player::Player(void) {
 	speedY = h;
 	xMax = WINDOW_W;
 	yMax = WINDOW_H;
-	keyDelay = .33f; // Prevent pressing keys faster than this ammount of seconds
+	keyDelay = .16f; // Prevent pressing keys faster than this ammount of seconds
 	currentKeyDelay = 0.f; // Seconds since last keypress
 
 }
