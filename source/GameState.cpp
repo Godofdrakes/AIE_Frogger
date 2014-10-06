@@ -27,11 +27,11 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 
 // Didn't split the draw functions into seperate functions cause all the objects are based off of sprite so the method of drawing them won't change
 void GameState::Draw() {
-	for(int count = 0; count < 375; ++count) DrawSprite( map[count]->SpriteID() );
-	DrawSprite( movementMarker->SpriteID() );
-	for(int i=0; i<4; ++i) DrawSprite( slowLane_L[i]->SpriteID() );
-	for(int i=0; i<4; ++i) DrawSprite( slowLane_R[i]->SpriteID() );
-	DrawSprite( player->SpriteID() );
+	/* map */for(int count = 0; count < 375; ++count) DrawSprite( map[count]->SpriteID() );
+	/* movementMarker */DrawSprite( movementMarker->SpriteID() );
+	/* slowLane_L */for(int i=0; i<4; ++i) DrawSprite( slowLane_L[i]->SpriteID() );
+	/* slowLane_R */for(int i=0; i<4; ++i) DrawSprite( slowLane_R[i]->SpriteID() );
+	/* player */DrawSprite( player->SpriteID() );
 
 }
 
@@ -81,13 +81,13 @@ void GameState::DestroyPlayer() {
 void GameState::MakeSlowCars() {
 	for(int i=0; i<4; ++i) {
 		slowLane_L[i] = new Car();
-		slowLane_L[i]->Direction(-1); // Go left
+		slowLane_L[i]->Direction(-1.f); // Go left
 		slowLane_L[i]->Y( (3*TILE_Y)+(TILE_Y*.5f) ); // Third row of tiles from the bottom
 		slowLane_L[i]->X((i*4)*TILE_X); // Four tiles in between each car
 		slowLane_L[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", slowLane_L[i]->W(), slowLane_L[i]->H(), slowLane_L[i]->DrawFromCenter()) );
 
 		slowLane_R[i] = new Car();
-		slowLane_R[i]->Direction(1); // Go left
+		slowLane_R[i]->Direction(2.f); // Go left
 		slowLane_R[i]->Y( (4*TILE_Y)+(TILE_Y*.5f) ); // Third row of tiles from the bottom
 		slowLane_R[i]->X((i*4)*TILE_X); // Four tiles in between each car
 		slowLane_R[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", slowLane_R[i]->W(), slowLane_R[i]->H(), slowLane_R[i]->DrawFromCenter()) );
