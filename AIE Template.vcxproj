@@ -44,6 +44,8 @@
     <OutDir>bin\</OutDir>
     <IntDir>obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -99,7 +101,6 @@
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
-    <ClCompile Include="source\TextureStrings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h" />
@@ -111,7 +112,6 @@
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\StateMachine.h" />
-    <ClInclude Include="include\TextureStrings.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

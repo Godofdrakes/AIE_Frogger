@@ -1,7 +1,6 @@
 #ifndef _GAMESTATE_H_
 #define _GAMESTATE_H_
 
-#include <vector>
 #include <iostream>
 #include <assert.h>
 #include "AIE.h"

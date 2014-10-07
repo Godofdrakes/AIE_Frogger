@@ -1,15 +1,13 @@
 #include <iostream>
 #include <string>
 #include <assert.h>
+//#include <vld.h> //http://vld.codeplex.com/
 #include "AIE.h"
 #include "godqol.h" //https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
 #include "StateMachine.h"
 #include "MainMenuState.h"
-#include "TextureStrings.h"
 
-using namespace std;
-
-extern const string WINDOW_NAME = "AIE_Frogger";
+extern const std::string WINDOW_NAME = "AIE_Frogger";
 // A single tile of the map will be this size, and the basic sprite will be just a few pixels smaller than this.
 extern const int TILE_X = 32; // How wide a tile will be
 extern const int TILE_Y = 32; // How tall a tile will be
