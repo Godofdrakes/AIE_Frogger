@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include "godqol.h"
 #include "BaseState.h"
 #include "Player.h"
 #include "Entity.h"

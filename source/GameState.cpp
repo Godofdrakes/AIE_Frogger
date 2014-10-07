@@ -151,7 +151,7 @@ void GameState::MakeCars() {
 		riverLane_C[i]->Y( (13*TILE_Y)-(TILE_Y*.5f) );
 		riverLane_C[i]->X((i*6)*TILE_X);
 		riverLane_C[i]->W(TILE_X * 3);
-		riverLane_C[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_C[i]->W(), riverLane_C[i]->H(), riverLane_C[i]->DrawFromCenter()) );riverLane_A[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_A[i]->W(), riverLane_A[i]->H(), riverLane_A[i]->DrawFromCenter()) );
+		riverLane_C[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_C[i]->W(), riverLane_C[i]->H(), riverLane_C[i]->DrawFromCenter()) );
 	}
 }
 
@@ -238,10 +238,13 @@ void GameState::MakeMap() {
 			map[count]->X( (column*TILE_X)+(TILE_X*.5f) );
 			map[count]->Y( (row*TILE_Y)+(TILE_Y*.5f) );
 			if(row == 3 || row == 4 || row == 6 || row == 7 || row == 8) { // Offset by -1 due to math stuff
+				// Make it a road tile
 				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/roadTile6.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
 			} if(row == 10 || row == 11 || row == 12) {
+				// Make it a water tile
 				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile6.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
 			} else {
+				// Make it a grass tile
 				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile3.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
 			}
 
@@ -265,8 +268,8 @@ void GameState::DestroyMap() {
 
 // Hit detection using the pythagrian theorum
 bool GameState::CheckHit(Player &thePlayer, Car &theCar) {
-	float a = ( thePlayer.X() - theCar.X() );
-	float b = ( thePlayer.Y() - theCar.Y() );
+	float a = ( theCar.X() - thePlayer.X() );
+	float b = ( theCar.Y() - thePlayer.Y() );
 	float c = (a*a)+(b*b);
 	if(sqrt(c)<TILE_X*0.75f) { return true; } else { return false; }
 
