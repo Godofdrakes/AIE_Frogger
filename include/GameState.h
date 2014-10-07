@@ -17,12 +17,23 @@ extern const unsigned int WINDOW_H;
 
 class GameState : public BaseState {
 private:
+	Sprite* map[375]; // The level's map, hardcoded for now. Might try and make this resizeable.
 	Player* player;
 	Sprite* movementMarker; // A small sprite placed behind the player to help visualize where they can move.
-	Car* slowLane_L[4]; // Slower car lane moving left
-	Car* slowLane_R[4]; // Slower car lane moving right
-	Sprite* map[375]; // The level's map, hardcoded for now. Might try and find a way to make this resizeable.
 
+	//Slow lanes
+	Car* slowLane_A[4]; // Slower car lane moving left
+	Car* slowLane_B[4]; // Slower car lane moving right
+
+	//Fast lanes
+	Car* fastLane_A[4]; // Faster car lane moving right
+	Car* fastLane_B[3]; // Faster car lane moving left
+	Car* fastLane_C[2]; // Faster car lane moving right
+
+	//River lanes - technically just cars, but the collision checking will be different
+	Car* riverLane_A[3];
+	Car* riverLane_B[4];
+	Car* riverLane_C[3];
 
 protected:
 
@@ -40,10 +51,10 @@ public:
 	void UpdatePlayer(float deltaTime);
 	void DestroyPlayer();
 
-	// Currently I'm just making everything cars, but I'll have logs and a water object for the rivver later
-	void MakeSlowCars();
-	void UpdateSlowCars(float deltaTime);
-	void DestroySlowCars();
+	// Currently I'm just making everything cars, but I'll have logs and a water object for the river later
+	void MakeCars();
+	void UpdateCars(float deltaTime);
+	void DestroyCars();
 
 	// Functions for the level's map
 	void MakeMap();
