@@ -16,17 +16,60 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 	UpdatePlayer(deltaTime);
 
 	// Check if car hit player
+
+		// Slow lanes
+	for(int i=0; i<4; ++i) { // Simple distance check so see if the object hit the player and make sure they are both on the same row.
+								// The Y comparison isn't technically necessary, but I had an issue or two with it previously so it's checking that for safety.
+		if (GodQOL::Distance( player->X(), player->Y(), slowLane_A[i]->X(), slowLane_A[i]->Y() ) < (slowLane_A[i]->W()/2)+(player->W()/2) && player->Y() == slowLane_A[i]->Y() ) {
+			player->X(TILE_X*.5f); // Return the player to their starting postiton
+			player->Y(TILE_Y*.5f);
+		}
+	}
 	for(int i=0; i<4; ++i) {
-		if( CheckHit(*player, *slowLane_A[i]) ) { player->X(TILE_X*.5f); player->Y(TILE_Y*.5f); }
-		if( CheckHit(*player, *slowLane_B[i]) ) { player->X(TILE_X*.5f); player->Y(TILE_Y*.5f); }
-		if( CheckHit(*player, *fastLane_A[i]) ) { player->X(TILE_X*.5f); player->Y(TILE_Y*.5f); }
+		if (GodQOL::Distance( player->X(), player->Y(), slowLane_B[i]->X(), slowLane_B[i]->Y() ) < (slowLane_B[i]->W()/2)+(player->W()/2) && player->Y() == slowLane_B[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
+	}
+		// Fast lanes
+	for(int i=0; i<4; ++i) {
+		if (GodQOL::Distance( player->X(), player->Y(), fastLane_A[i]->X(), fastLane_A[i]->Y() ) < (fastLane_A[i]->W()/2)+(player->W()/2) && player->Y() == fastLane_A[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
 	}
 	for(int i=0; i<3; ++i) {
-		if( CheckHit(*player, *fastLane_B[i]) ) { player->X(TILE_X*.5f); player->Y(TILE_Y*.5f); }
+		if (GodQOL::Distance( player->X(), player->Y(), fastLane_B[i]->X(), fastLane_B[i]->Y() ) < (fastLane_B[i]->W()/2)+(player->W()/2) && player->Y() == fastLane_B[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
 	}
 	for(int i=0; i<2; ++i) {
-		if( CheckHit(*player, *fastLane_C[i]) ) { player->X(TILE_X*.5f); player->Y(TILE_Y*.5f); }
+		if (GodQOL::Distance( player->X(), player->Y(), fastLane_C[i]->X(), fastLane_C[i]->Y() ) < (fastLane_C[i]->W()/2)+(player->W()/2) && player->Y() == fastLane_C[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
 	}
+		//River lanes
+	for(int i=0; i<3; ++i) {
+		if (GodQOL::Distance( player->X(), player->Y(), riverLane_A[i]->X(), riverLane_A[i]->Y() ) < (riverLane_A[i]->W()/2)+(player->W()/2) && player->Y() == riverLane_A[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
+	}
+	for(int i=0; i<4; ++i) {
+		if (GodQOL::Distance( player->X(), player->Y(), riverLane_B[i]->X(), riverLane_B[i]->Y() ) < (riverLane_B[i]->W()/2)+(player->W()/2) && player->Y() == riverLane_B[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
+	}
+	for(int i=0; i<3; ++i) {
+		if (GodQOL::Distance( player->X(), player->Y(), riverLane_C[i]->X(), riverLane_C[i]->Y() ) < (riverLane_C[i]->W()/2)+(player->W()/2) && player->Y() == riverLane_C[i]->Y() ) {
+			player->X(TILE_X*.5f);
+			player->Y(TILE_Y*.5f);
+		}
+	}
+
 
 	if( IsKeyDown(GLFW_KEY_TAB) ) { delete a_pSM->PopState(); }
 
@@ -34,7 +77,7 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 
 // Didn't split the draw functions into seperate functions cause all the objects are based off of sprite so the method of drawing them won't change
 void GameState::Draw() {
-	/* Draw map */for(int count = 0; count < 375; ++count) DrawSprite( map[count]->SpriteID() );
+	/* Draw map */for(int count = 0; count < 225; ++count) DrawSprite( map[count].SpriteID() );
 	/* Draw movementMarker */DrawSprite( movementMarker->SpriteID() );
 	/* Draw slowLane_A */for(int i=0; i<4; ++i) DrawSprite( slowLane_A[i]->SpriteID() );
 	/* Draw slowLane_B */for(int i=0; i<4; ++i) DrawSprite( slowLane_B[i]->SpriteID() );
@@ -59,8 +102,10 @@ void GameState::Destroy() {
 
 void GameState::MakePlayer() {
 	player = new Player();
-	player->X(player->W()*.5f);
-	player->Y(player->H()*.5f);
+	player->X(TILE_X*.5f);
+	player->Y(TILE_Y*.5f);
+	player->W(TILE_X-2);
+	player->H(TILE_Y-2);
 	player->SpriteID( CreateSprite("./images/pieceRed_border06.png", player->W(), player->H(), player->DrawFromCenter()) );
 
 	movementMarker = new Sprite();
@@ -98,6 +143,8 @@ void GameState::MakeCars() {
 		slowLane_A[i]->Direction(-1.f); // Go left
 		slowLane_A[i]->Y( (4*TILE_Y)-(TILE_Y*.5f) ); // 4th row of tiles from the bottom
 		slowLane_A[i]->X((i*4)*TILE_X); // 4 tiles in between each car
+		slowLane_A[i]->W(TILE_X-2);
+		slowLane_A[i]->H(TILE_Y-2);
 		slowLane_A[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", slowLane_A[i]->W(), slowLane_A[i]->H(), slowLane_A[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<4; ++i) {
@@ -105,6 +152,8 @@ void GameState::MakeCars() {
 		slowLane_B[i]->Direction(2.f);
 		slowLane_B[i]->Y( (5*TILE_Y)-(TILE_Y*.5f) );
 		slowLane_B[i]->X((i*4)*TILE_X);
+		slowLane_B[i]->W(TILE_X-2);
+		slowLane_B[i]->H(TILE_Y-2);
 		slowLane_B[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", slowLane_B[i]->W(), slowLane_B[i]->H(), slowLane_B[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<4; ++i) {
@@ -112,6 +161,8 @@ void GameState::MakeCars() {
 		fastLane_A[i]->Direction(3.33f);
 		fastLane_A[i]->Y( (7*TILE_Y)-(TILE_Y*.5f) );
 		fastLane_A[i]->X((i*4)*TILE_X);
+		fastLane_A[i]->W(TILE_X-2);
+		fastLane_A[i]->H(TILE_Y-2);
 		fastLane_A[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", fastLane_A[i]->W(), fastLane_A[i]->H(), fastLane_A[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<3; ++i) {
@@ -119,6 +170,8 @@ void GameState::MakeCars() {
 		fastLane_B[i]->Direction(-4.66f);
 		fastLane_B[i]->Y( (8*TILE_Y)-(TILE_Y*.5f) );
 		fastLane_B[i]->X((i*6)*TILE_X);
+		fastLane_B[i]->W(TILE_X-2);
+		fastLane_B[i]->H(TILE_Y-2);
 		fastLane_B[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", fastLane_B[i]->W(), fastLane_B[i]->H(), fastLane_B[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<2; ++i) {
@@ -126,7 +179,8 @@ void GameState::MakeCars() {
 		fastLane_C[i]->Direction(6.f);
 		fastLane_C[i]->Y( (9*TILE_Y)-(TILE_Y*.5f) );
 		fastLane_C[i]->X((i*8)*TILE_X);
-		fastLane_C[i]->W(TILE_X * 2);
+		fastLane_C[i]->W((TILE_X-2)*2);
+		fastLane_C[i]->H(TILE_Y-2);
 		fastLane_C[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", fastLane_C[i]->W(), fastLane_C[i]->H(), fastLane_C[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<3; ++i) {
@@ -134,7 +188,8 @@ void GameState::MakeCars() {
 		riverLane_A[i]->Direction(-1.f);
 		riverLane_A[i]->Y( (11*TILE_Y)-(TILE_Y*.5f) );
 		riverLane_A[i]->X((i*6)*TILE_X);
-		riverLane_A[i]->W(TILE_X * 3);
+		riverLane_A[i]->W((TILE_X-2)*3);
+		riverLane_A[i]->H(TILE_Y-2);
 		riverLane_A[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_A[i]->W(), riverLane_A[i]->H(), riverLane_A[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<4; ++i) {
@@ -142,7 +197,8 @@ void GameState::MakeCars() {
 		riverLane_B[i]->Direction(3.33f);
 		riverLane_B[i]->Y( (12*TILE_Y)-(TILE_Y*.5f) );
 		riverLane_B[i]->X((i*4)*TILE_X);
-		riverLane_B[i]->W(TILE_X * 3);
+		riverLane_B[i]->W((TILE_X-2)*3);
+		riverLane_B[i]->H(TILE_Y-2);
 		riverLane_B[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_B[i]->W(), riverLane_B[i]->H(), riverLane_B[i]->DrawFromCenter()) );
 	}
 	for(int i=0; i<3; ++i) {
@@ -150,7 +206,8 @@ void GameState::MakeCars() {
 		riverLane_C[i]->Direction(3.33f);
 		riverLane_C[i]->Y( (13*TILE_Y)-(TILE_Y*.5f) );
 		riverLane_C[i]->X((i*6)*TILE_X);
-		riverLane_C[i]->W(TILE_X * 3);
+		riverLane_C[i]->W((TILE_X-2)*3);
+		riverLane_C[i]->H(TILE_Y-2);
 		riverLane_C[i]->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverLane_C[i]->W(), riverLane_C[i]->H(), riverLane_C[i]->DrawFromCenter()) );
 	}
 }
@@ -233,19 +290,20 @@ void GameState::MakeMap() {
 	int count = 0; // Which map tile are we currently working on?
 
 	for(int column = 0; column < 15; ++column) {
-		for(int row = 0; row < 25; ++row) {
-			map[count] = new Sprite();
-			map[count]->X( (column*TILE_X)+(TILE_X*.5f) );
-			map[count]->Y( (row*TILE_Y)+(TILE_Y*.5f) );
+		for(int row = 0; row < 15; ++row) {
+			Sprite tile;
+			map[count] = tile;
+			map[count].X( (column*TILE_X)+(TILE_X*.5f) );
+			map[count].Y( (row*TILE_Y)+(TILE_Y*.5f) );
 			if(row == 3 || row == 4 || row == 6 || row == 7 || row == 8) { // Offset by -1 due to math stuff
 				// Make it a road tile
-				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/roadTile6.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
+				map[count].SpriteID( CreateSprite("./images/kenneyRoad/roadTile6.png", map[count].W(), map[count].H(), map[count].DrawFromCenter()) );
 			} if(row == 10 || row == 11 || row == 12) {
 				// Make it a water tile
-				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile6.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
+				map[count].SpriteID( CreateSprite("./images/kenneyRoad/terrainTile6.png", map[count].W(), map[count].H(), map[count].DrawFromCenter()) );
 			} else {
 				// Make it a grass tile
-				map[count]->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile3.png", map[count]->W(), map[count]->H(), map[count]->DrawFromCenter()) );
+				map[count].SpriteID( CreateSprite("./images/kenneyRoad/terrainTile3.png", map[count].W(), map[count].H(), map[count].DrawFromCenter()) );
 			}
 
 			count++; // Be sure to increment for the next tile.
@@ -254,16 +312,12 @@ void GameState::MakeMap() {
 }
 
 void GameState::UpdateMap() {
-	for(int count = 0; count < 375; ++count) {
-		MoveSprite( map[count]->SpriteID(), map[count]->X(), map[count]->Y() );
+	for(int count = 0; count < 225; ++count) {
+		MoveSprite( map[count].SpriteID(), map[count].X(), map[count].Y() );
 	}
 }
 
 void GameState::DestroyMap() {
-	for(int count = 0; count < 375; ++count) {
-		DestroySprite( map[count]->SpriteID() );
-		delete map[count];
-	}
 }
 
 // Hit detection using the pythagrian theorum

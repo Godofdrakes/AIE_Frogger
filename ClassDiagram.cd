@@ -17,15 +17,8 @@
   <Class Name="GameState">
     <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAKAAAgAAAAAABQIAAAhAAAABAAACAAEAIAA=</HashCode>
+      <HashCode>AARAEAAAALpAAgAAAAAABQIAAAxAYAABEAgCAAEAoIA=</HashCode>
       <FileName>include\GameState.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GodQOL">
-    <Position X="8.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>C:\Users\Godofdrakes\Documents\GitHub\Godofdrakes-CPP-QOL\godqol.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MainMenuState">
@@ -45,7 +38,7 @@
   <Class Name="Sprite">
     <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAQQIhgAEAIYAI=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAQQIhgAEAIYAI=</HashCode>
       <FileName>include\Sprite.h</FileName>
     </TypeIdentifier>
   </Class>

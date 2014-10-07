@@ -3,12 +3,13 @@
 
 #include <vector>
 #include <iostream>
+#include <assert.h>
+#include "AIE.h"
 #include "godqol.h"
 #include "BaseState.h"
 #include "Player.h"
 #include "Entity.h"
 #include "Car.h"
-#include "AIE.h"
 #include "StateMachine.h"
 
 extern const int TILE_X;
@@ -18,9 +19,10 @@ extern const unsigned int WINDOW_H;
 
 class GameState : public BaseState {
 private:
-	Sprite* map[375]; // The level's map, hardcoded for now. Might try and make this resizeable.
-	Player* player;
+	Sprite map[225]; // The level's map, hardcoded for now. Might try and make this resizeable.
+	Player* player; //The frog
 	Sprite* movementMarker; // A small sprite placed behind the player to help visualize where they can move.
+	//Sprite
 
 	//Slow lanes
 	Car* slowLane_A[4]; // Slower car lane moving left
@@ -32,9 +34,9 @@ private:
 	Car* fastLane_C[2]; // Faster car lane moving right
 
 	//River lanes - technically just cars, but the collision checking will be different
-	Car* riverLane_A[3];
-	Car* riverLane_B[4];
-	Car* riverLane_C[3];
+	Car* riverLane_A[3]; // River lane moving left
+	Car* riverLane_B[4]; // River lane moving right
+	Car* riverLane_C[3]; // River lane moving right
 
 protected:
 

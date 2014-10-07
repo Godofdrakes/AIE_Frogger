@@ -3,8 +3,8 @@
 Sprite::Sprite(void) {
 	w = 32;
 	h = 32;
-	x = 32;
-	y = 32;
+	x = 16;
+	y = 16;
 	spriteID = -1;
 	drawFromCenter = true;
 }
