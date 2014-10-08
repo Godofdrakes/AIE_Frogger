@@ -11,8 +11,8 @@ extern const std::string WINDOW_NAME = "AIE_Frogger";
 // A single tile of the map will be this size, and the basic sprite will be just a few pixels smaller than this.
 extern const int TILE_X = 32; // How wide a tile will be
 extern const int TILE_Y = 32; // How tall a tile will be
-extern const unsigned int WINDOW_W = TILE_X*15; // Number of tiles wide
-extern const unsigned int WINDOW_H = TILE_Y*15; // Number of tiles tall
+extern const int WINDOW_W = TILE_X*15; // Number of tiles wide
+extern const int WINDOW_H = TILE_Y*15; // Number of tiles tall
 
 extern bool doExit = false; // When true, close the program
 

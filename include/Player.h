@@ -6,8 +6,8 @@
 
 extern const int TILE_X;
 extern const int TILE_Y;
-extern const unsigned int WINDOW_W;
-extern const unsigned int WINDOW_H;
+extern const int WINDOW_W;
+extern const int WINDOW_H;
 
 class Player : public Entity {
 private:

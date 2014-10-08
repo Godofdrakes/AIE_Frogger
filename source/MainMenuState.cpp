@@ -1,7 +1,7 @@
 #include "MainMenuState.h"
 
-extern const unsigned int WINDOW_W;
-extern const unsigned int WINDOW_H;
+extern const int WINDOW_W;
+extern const int WINDOW_H;
 extern bool doExit;
 
 MainMenuState::MainMenuState(void) {}
