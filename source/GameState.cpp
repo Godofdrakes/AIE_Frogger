@@ -185,6 +185,7 @@ void GameState::MakeCars() {
 		car->SpriteID( CreateSprite("./images/pieceRed_border13.png", car->W(), car->H(), car->DrawFromCenter()) );
 		gameObjects.push_back(car);
 	}
+	
 }
 
 void GameState::UpdateCar(Car* car, float deltaTime) {
