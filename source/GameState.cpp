@@ -145,47 +145,62 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 void GameState::MakeCars() {
 	// Bunch of code for making each car
 	for(int i=0; i<numCars; ++i) {
-		Car* car = new Car();
-		car->SpeedX(2.f*TILE_X);
+		Car* car = new Car(); // Make the car object
 		car->SpeedY(0.f);
-		if(i<4) {
+		if(i<4) { // Set it's X, Y, and witdh
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (4*TILE_Y) - (TILE_Y*.5f) );
 			car->W(TILE_X-2);
 			car->X((i*4)*TILE_X);
+
 		} else if(i<8) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (5*TILE_Y)-(TILE_Y*.5f) );
 			car->W(TILE_X-2);
-			car->X((i*4)*TILE_X);
+			car->X(((i-4)*4)*TILE_X);
+
 		} else if(i<11) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (8*TILE_Y) - (TILE_Y*.5f) );
 			car->W(TILE_X-2);
-			car->X((i*3)*TILE_X);
+			car->X(((i-7)*3)*TILE_X);
+
 		} else if(i<13) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (9*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*2);
-			car->X((i*2)*TILE_X);
+			car->X(((i-9)*2)*TILE_X);
+
 		} else if(i<16) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (11*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
-			car->X((i*3)*TILE_X);
+			car->X(((i-12)*6)*TILE_X);
+
 		} else if(i<19) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (12*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
-			car->X((i*3)*TILE_X);
+			car->X(((i-15)*5)*TILE_X);
+
 		} else if(i<22) {
+			car->SpeedX(2.f*TILE_X);
 			car->Y( (13*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
-			car->X((i*3)*TILE_X);
+			car->X(((i-18)*6)*TILE_X);
+
 		} else {
+			car->SpeedX(2.f*TILE_X);
 			car->Y(TILE_Y);
 			car->W(TILE_X-2);
 			car->X((i*4)*TILE_X);
+
 		}
-		car->H(TILE_Y-2);
-		car->SpriteID( CreateSprite("./images/pieceRed_border13.png", car->W(), car->H(), car->DrawFromCenter()) );
-		gameObjects.push_back(car);
+		car->H(TILE_Y-2); // Set the height
+		car->SpriteID( CreateSprite("./images/pieceRed_border13.png", car->W(), car->H(), car->DrawFromCenter()) ); // The sprite
+		gameObjects.push_back(car); // And add it to the list of objects
 	}
-	
+
 }
 
 void GameState::UpdateCar(Car* car, float deltaTime) {
