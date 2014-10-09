@@ -7,7 +7,7 @@ GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
 void GameState::Init() {
-	MakeMap();
+	MakeRiver();
 	MakeCars();
 	MakePlayer();
 
@@ -20,7 +20,7 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 		if(dynamic_cast<Player*>(object) != 0) { // If it's the player
 			UpdatePlayer(dynamic_cast<Player*>(object), deltaTime);
 		}
-		if(dynamic_cast<Car*>(object) != 0) { // If it's the player
+		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
 			UpdateCar(dynamic_cast<Car*>(object), deltaTime);
 		}
 	}
@@ -75,10 +75,7 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 		}
 	}
 	for(int i=0; i<3; ++i) {
-		if (GodQOL::Distance( player->X(), player->Y(), riverLane_C[i]->X(), riverLane_C[i]->Y() ) < (riverLane_C[i]->W()/2)+(player->W()/2) && player->Y() == riverLane_C[i]->Y() ) {
-			player->X(TILE_X*.5f);
-			player->Y(TILE_Y*.5f);
-		}
+
 	}
 */
 
@@ -86,7 +83,6 @@ void GameState::Update (float deltaTime, StateMachine* a_pSM) {
 
 }
 
-// Didn't split the draw functions into seperate functions cause all the objects are based off of sprite so the method of drawing them won't change
 void GameState::Draw() {
 
 	for(auto mapTile : mapTiles) { // Iterate through every map tile
@@ -103,15 +99,11 @@ void GameState::Draw() {
 
 void GameState::Destroy() {
 
-	for(auto object : mapTiles) { // Iterate through every map tile
-		DestroySprite(object->SpriteID());
-		delete object;
-	}
-
 	for(auto object : gameObjects) { // Iterate through every game object
 		DestroySprite(object->SpriteID());
 		delete object;
 	}
+	gameObjects.clear();
 
 }
 
@@ -131,6 +123,22 @@ void GameState::MakePlayer() {
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
 	player->Move(deltaTime);
 
+	for(auto object : gameObjects) { // Iterate through every game object
+		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
+			// Check if the player is hit by a car
+			if (GodQOL::Distance( player->X(), player->Y(),
+														object->X(), object->Y() ) <
+														(object->W()/2) + (player->W()/2) &&  // If player is hit by car
+														player->Y() == object->Y() ) { // And both are on the same lane
+														/* Not using box colision for reasons.
+														An issue with distance however is that the car wil "hit" the player even if the player is on a different lane then them.
+														By making sure the player and car are on the same lane we fix that.*/
+				player->X(TILE_X*.5f);
+				player->Y(TILE_Y*.5f);
+			}
+		}
+	}
+
 }
 
 /* Lane functions */
@@ -140,31 +148,38 @@ void GameState::MakeCars() {
 		Car* car = new Car();
 		car->SpeedX(2.f*TILE_X);
 		car->SpeedY(0.f);
-		car->X((i*4)*TILE_X);
 		if(i<4) {
 			car->Y( (4*TILE_Y) - (TILE_Y*.5f) );
 			car->W(TILE_X-2);
+			car->X((i*4)*TILE_X);
 		} else if(i<8) {
 			car->Y( (5*TILE_Y)-(TILE_Y*.5f) );
 			car->W(TILE_X-2);
+			car->X((i*4)*TILE_X);
 		} else if(i<11) {
 			car->Y( (8*TILE_Y) - (TILE_Y*.5f) );
 			car->W(TILE_X-2);
+			car->X((i*3)*TILE_X);
 		} else if(i<13) {
 			car->Y( (9*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*2);
+			car->X((i*2)*TILE_X);
 		} else if(i<16) {
 			car->Y( (11*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
+			car->X((i*3)*TILE_X);
 		} else if(i<19) {
 			car->Y( (12*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
+			car->X((i*3)*TILE_X);
 		} else if(i<22) {
 			car->Y( (13*TILE_Y) - (TILE_Y*.5f) );
 			car->W((TILE_X-2)*3);
+			car->X((i*3)*TILE_X);
 		} else {
 			car->Y(TILE_Y);
 			car->W(TILE_X-2);
+			car->X((i*4)*TILE_X);
 		}
 		car->H(TILE_Y-2);
 		car->SpriteID( CreateSprite("./images/pieceRed_border13.png", car->W(), car->H(), car->DrawFromCenter()) );
@@ -175,30 +190,6 @@ void GameState::MakeCars() {
 void GameState::UpdateCar(Car* car, float deltaTime) {
 	car->Move(deltaTime);
 	MoveSprite(car->SpriteID(), car->X(), car->Y());
-
-}
-
-/* Map fucntions */
-
-void GameState::MakeMap() {
-	for(int column = 0; column < (WINDOW_W/TILE_X); ++column) {
-		for(int row = 0; row < (WINDOW_H/TILE_Y); ++row) {
-			Sprite* mapTile = new Sprite();
-			mapTile->X( (column*TILE_X)+(TILE_X*.5f) );
-			mapTile->Y( (row*TILE_Y)+(TILE_Y*.5f) );
-			if(row == 3 || row == 4 || row == 6 || row == 7 || row == 8) { // Offset by -1 due to math stuff
-				// Make it a road tile
-				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/roadTile6.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
-			} if(row == 10 || row == 11 || row == 12) {
-				// Make it a water tile
-				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile6.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
-			} else {
-				// Make it a grass tile
-				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile3.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
-			}
-			mapTiles.push_back(mapTile);
-		}
-	}
 
 }
 

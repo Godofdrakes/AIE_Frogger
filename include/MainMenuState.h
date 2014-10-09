@@ -9,10 +9,7 @@
 
 class MainMenuState : public BaseState {
 private:
-	Sprite* iArcadeMarquee;
-
 protected:
-
 public:
 	MainMenuState(void);
 	~MainMenuState(void);
@@ -21,6 +18,9 @@ public:
 	void Update(float deltaTime, StateMachine* a_pSM);
 	void Draw();
 	void Destroy();
+
+	// Functions for the level's map
+	void MakeMap();
 
 };
 

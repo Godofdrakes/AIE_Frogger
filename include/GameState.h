@@ -37,9 +37,6 @@ public:
 	void MakeCars();
 	void UpdateCar(Car* car, float deltaTime);
 
-	// Functions for the level's map
-	void MakeMap();
-
 	// Functions for the river
 	void MakeRiver();
 	void UpdateRiver();
