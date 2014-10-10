@@ -4,11 +4,15 @@
 #include <iostream>
 #include <assert.h>
 #include <vector>
+
 #include "AIE.h"
 #include "godqol.h"
+
 #include "BaseState.h"
 #include "Player.h"
 #include "Car.h"
+#include "RiverLog.h"
+#include "RiverWater.h"
 #include "StateMachine.h"
 
 extern const int TILE_X;
@@ -18,7 +22,6 @@ extern const int WINDOW_H;
 
 class GameState : public BaseState {
 private:
-	int numCars = 22;
 protected:
 public:
 	GameState(void);
@@ -30,15 +33,15 @@ public:
 	void Draw(); // Draw all objects
 	void Destroy(); // Call destroy functions for all objects
 
-	void MakePlayer();
+	void InitPlayer();
 	void UpdatePlayer(Player* player, float deltaTime);
 
 	// Currently I'm just making everything cars, but I'll have logs and a water object for the river later
-	void MakeCars();
+	void InitCars();
 	void UpdateCar(Car* car, float deltaTime);
 
 	// Functions for the river
-	void MakeRiver();
+	void InitRiver();
 	void UpdateRiver();
 
 	// Collision checking

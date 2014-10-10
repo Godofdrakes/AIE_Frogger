@@ -2,7 +2,7 @@
 #include <string>
 #include <assert.h>
 #include "AIE.h"
-//#include <vld.h> //http://vld.codeplex.com/
+#include <vld.h> //http://vld.codeplex.com/
 #include "godqol.h" //https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
 #include "StateMachine.h"
 #include "MainMenuState.h"
@@ -17,24 +17,24 @@ extern const int WINDOW_H = TILE_Y*15; // Number of tiles tall
 extern bool doExit = false; // When true, close the program
 
 int main(int argc, char* argv[]) {
-  /* The AIE Framework leaks more than a frightened puppy. I'm ignoring it's memory leaks as much as possible.
-      Sadly there will be some memory leak at the end. Dealing with the AIE Framework in any form results in memory leak.
-      Running in RELEASE will not init VLD and will ensure emeory leaks are not reported.
+  /*
+    The AIE Framework leaks more than a frightened puppy. I'm ignoring it's memory leaks as much as possible.
+    Building in RELEASE will not init VLD.
   */
-  //VLDDisable; // Disabling and reenabling vld around the framework functions will make it ignore any memory allocated durring that time.
+  VLDDisable(); // Disabling and reenabling vld around the framework functions will make it ignore any memory allocated durring that time.
 
   //Init the AIE framework
   Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());
   SetBackgroundColour(SColour(0, 0, 0, 255));
 
-  //VLDEnable;
+  VLDEnable();
 
   StateMachine state;
   state.PushState( new MainMenuState() );
 
   //Game Loop
   do {
-    //VLDEnable; // Make sure it's reenabled.
+    VLDEnable(); // Make sure it's reenabled.
 
     ClearScreen();
     float deltaTime = GetDeltaTime();
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     state.Update(deltaTime);
     if(!doExit) {state.Draw();}
 
-    //VLDDisable; // Disable VLD before FrameworkUpdate() runs.
+    VLDDisable(); // Disable VLD before FrameworkUpdate() runs.
 
   } while(!FrameworkUpdate() && !doExit);
 

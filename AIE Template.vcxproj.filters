@@ -42,6 +42,12 @@
     <ClCompile Include="source\Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\RiverLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RiverWater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\StateMachine.h">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RiverLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RiverWater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

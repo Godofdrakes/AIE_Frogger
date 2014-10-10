@@ -40,15 +40,15 @@ void MainMenuState::Destroy() {
 /* Map fucntions */
 
 void MainMenuState::MakeMap() {
-	for(int column = 0; column < (WINDOW_W/TILE_X); ++column) {
-		for(int row = 0; row < (WINDOW_H/TILE_Y); ++row) {
+	for(int row = 0; row < (WINDOW_W/TILE_X); ++row) {
+		for(int column = 0; column < (WINDOW_H/TILE_Y); ++column) {
 			Sprite* mapTile = new Sprite();
 			mapTile->X( (column*TILE_X)+(TILE_X*.5f) );
 			mapTile->Y( (row*TILE_Y)+(TILE_Y*.5f) );
-			if(row == 3 || row == 4 || row == 6 || row == 7 || row == 8) { // Offset by -1 due to math stuff
+			if(row == 3 || row == 4 || row == 6 || row == 7 || row == 8) {
 				// Make it a road tile
-				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/roadTile6.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
-			} if(row == 10 || row == 11 || row == 12) {
+				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile2.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
+			} else if(row == 10 || row == 11 || row == 12) {
 				// Make it a water tile
 				mapTile->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile6.png", mapTile->W(), mapTile->H(), mapTile->DrawFromCenter()) );
 			} else {

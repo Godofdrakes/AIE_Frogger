@@ -99,6 +99,8 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MainMenuState.cpp" />
     <ClCompile Include="source\Player.cpp" />
+    <ClCompile Include="source\RiverLog.cpp" />
+    <ClCompile Include="source\RiverWater.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
   </ItemGroup>
@@ -110,6 +112,8 @@
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\MainMenuState.h" />
     <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\RiverLog.h" />
+    <ClInclude Include="include\RiverWater.h" />
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\StateMachine.h" />
   </ItemGroup>
