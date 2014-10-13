@@ -7,21 +7,25 @@ GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
 void GameState::Init() {
-	InitRiver();
+	InitRiverWater();
+	InitRiverLog();
 	InitCars();
 	InitPlayer();
 
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
-	if( IsKeyDown(GLFW_KEY_TAB) ) { delete a_pSM->PopState(); return; }
+	if( IsKeyDown(GLFW_KEY_ESCAPE) ) { a_pSM->PushState( new PauseState() ); return; }
 
 	for(auto object : gameObjects) { // Iterate through every object in the vector
-		if(dynamic_cast<Player*>(object) != 0) { // If it's the player
-			UpdatePlayer(dynamic_cast<Player*>(object), deltaTime);
-		}
-		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
+		if(dynamic_cast<RiverWater*>(object) != 0) { // If it's RiverWater
+			UpdateRiverWater(dynamic_cast<RiverWater*>(object), deltaTime);
+		} else if(dynamic_cast<RiverLog*>(object) != 0) { // If it's a RiverLog
+			UpdateRiverLog(dynamic_cast<RiverLog*>(object), deltaTime);
+		} else if(dynamic_cast<Car*>(object) != 0) { // If it's a car
 			UpdateCar(dynamic_cast<Car*>(object), deltaTime);
+		} else if(dynamic_cast<Player*>(object) != 0) { // If it's the player
+			UpdatePlayer(dynamic_cast<Player*>(object), deltaTime);
 		}
 	}
 
@@ -48,7 +52,9 @@ void GameState::Draw() {
 void GameState::Destroy() {
 
 	for(auto object : gameObjects) { // Iterate through every game object
-		DestroySprite(object->SpriteID());
+		if (object->SpriteID() >= 0) {
+			DestroySprite(object->SpriteID());
+		}
 		delete object;
 	}
 	gameObjects.clear();
@@ -69,6 +75,8 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
+	bool touchingWater = false;
+	bool touchingLog = false;
 	player->Move(deltaTime);
 
 	for(auto object : gameObjects) { // Iterate through every game object
@@ -79,7 +87,21 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 				player->X(TILE_X*.5f);
 				player->Y(TILE_Y*.5f);
 			}
+		} else if(dynamic_cast<RiverWater*>(object) != 0) {
+			if(GodQOL::BoxCollide(player->X(), player->Y(), player->W(), player->H(),
+														object->X(), object->Y(), object->W(), object->H())) {
+				touchingWater = true;
+			}
+		} else if(dynamic_cast<RiverLog*>(object) != 0) {
+			if(GodQOL::BoxCollide(player->X(), player->Y(), player->W(), player->H(),
+														object->X(), object->Y(), object->W(), object->H())) {
+				touchingLog = true;
+			}
 		}
+	}
+	if (touchingWater == true && touchingLog == false) {
+		player->X(TILE_X*.5f);
+		player->Y(TILE_Y*.5f);
 	}
 
 }
@@ -162,19 +184,44 @@ void GameState::InitCars() {
 
 void GameState::UpdateCar(Car* car, float deltaTime) {
 	car->Move(deltaTime);
-	MoveSprite(car->SpriteID(), car->X(), car->Y());
 
 }
 
-void GameState::InitRiver() {
+void GameState::InitRiverLog() {
 	// River 1
 	for(int i=0; i<4; ++i) {
 		RiverLog* riverLog = new RiverLog();
 		riverLog->SpeedY( 0.f );
 		riverLog->SpeedX( -1.5f * TILE_X );
-		riverLog->Y( (8*TILE_Y) + (TILE_X/2) );
-		riverLog->X( (i*4) * TILE_X );
-		riverLog->W( TILE_X-2 );
+		riverLog->Y( (10*TILE_Y) + (TILE_X/2) );
+		riverLog->X( (i*4.5f) * TILE_X );
+		riverLog->W( TILE_X*3 );
+		riverLog->H( TILE_X-2 );
+		riverLog->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile5.png", riverLog->W(), riverLog->H(), riverLog->DrawFromCenter()) );
+		gameObjects.push_back(riverLog);
+
+	}
+	// River 2
+	for(int i=0; i<4; ++i) {
+		RiverLog* riverLog = new RiverLog();
+		riverLog->SpeedY( 0.f );
+		riverLog->SpeedX( 3.0f * TILE_X );
+		riverLog->Y( (11*TILE_Y) + (TILE_X/2) );
+		riverLog->X( (i*4.5f) * TILE_X );
+		riverLog->W( TILE_X*3 );
+		riverLog->H( TILE_X-2 );
+		riverLog->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile5.png", riverLog->W(), riverLog->H(), riverLog->DrawFromCenter()) );
+		gameObjects.push_back(riverLog);
+
+	}
+	// River 3
+	for(int i=0; i<4; ++i) {
+		RiverLog* riverLog = new RiverLog();
+		riverLog->SpeedY( 0.f );
+		riverLog->SpeedX( -2.f * TILE_X );
+		riverLog->Y( (12*TILE_Y) + (TILE_X/2) );
+		riverLog->X( (i*4.5f) * TILE_X );
+		riverLog->W( TILE_X*3 );
 		riverLog->H( TILE_X-2 );
 		riverLog->SpriteID( CreateSprite("./images/kenneyRoad/terrainTile5.png", riverLog->W(), riverLog->H(), riverLog->DrawFromCenter()) );
 		gameObjects.push_back(riverLog);
@@ -183,6 +230,25 @@ void GameState::InitRiver() {
 
 }
 
-void GameState::UpdateRiver() {
+void GameState::UpdateRiverLog(RiverLog* riverLog, float deltaTime) {
+	riverLog->Move(deltaTime);
+
+}
+
+void GameState::InitRiverWater() {
+	RiverWater* riverWater = new RiverWater();
+	riverWater->SpeedY( 0.f );
+	riverWater->SpeedX( 0.f );
+	riverWater->Y( (11*TILE_Y) + (TILE_X/2) );
+	riverWater->X( WINDOW_W*.5f );
+	riverWater->W( WINDOW_W );
+	riverWater->H( TILE_X*3 );
+	//riverWater->SpriteID( CreateSprite("./images/pieceRed_border13.png", riverWater->W(), riverWater->H(), riverWater->DrawFromCenter()) );
+	gameObjects.push_back(riverWater);
+
+}
+
+void GameState::UpdateRiverWater(RiverWater* riverWater, float deltaTime) {
+	riverWater->Move(deltaTime);
 
 }
