@@ -1,8 +1,5 @@
 #include "MainMenuState.h"
 
-std::vector<Sprite*> BaseState::mapTiles;
-std::vector<Entity*> BaseState::gameObjects;
-
 extern const int WINDOW_W;
 extern const int WINDOW_H;
 extern bool doExit;

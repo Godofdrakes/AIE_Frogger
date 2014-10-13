@@ -104,7 +104,6 @@
     <ClCompile Include="source\RiverWater.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
-    <ClCompile Include="source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h" />
@@ -119,7 +118,6 @@
     <ClInclude Include="include\RiverWater.h" />
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\StateMachine.h" />
-    <ClInclude Include="include\WinState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
