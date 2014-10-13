@@ -82,21 +82,12 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// If the player reaches the other side, they have won.
-	if(player->Y() > TILE_Y*13) { playerHasWon = true; }
-=======
 	if(player->Y() > TILE_Y*13) { playerHasWon = true; } // If the player reaches the other side, they have won.
->>>>>>> winstate
 
 	player->Move(deltaTime);
 
-=======
->>>>>>> 4bfe565a41ae9a1109eaa7a2ba2ad942de3ee1bf
 	bool touchingWater = false;
 	bool touchingLog = false;
-	player->Move(deltaTime);
 
 	for(auto object : gameObjects) { // Iterate through every game object
 		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
