@@ -1,8 +1,5 @@
 #include "GameState.h"
 
-std::vector<Sprite*> BaseState::mapTiles;
-std::vector<Entity*> BaseState::gameObjects;
-
 GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
@@ -92,7 +89,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 
 	bool touchingWater = false;
 	bool touchingLog = false;
-	/*
+
 	for(auto object : gameObjects) { // Iterate through every game object
 		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
 			// Check if the player is hit by a car
@@ -117,7 +114,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 		player->X(TILE_X*.5f);
 		player->Y(TILE_Y*.5f);
 	}
-	*/
+
 }
 
 /* Lane functions */

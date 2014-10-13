@@ -102,6 +102,7 @@
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\RiverLog.cpp" />
     <ClCompile Include="source\RiverWater.cpp" />
+    <ClCompile Include="source\SettingsState.cpp" />
     <ClCompile Include="source\Sprite.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
     <ClCompile Include="source\WinState.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\RiverLog.h" />
     <ClInclude Include="include\RiverWater.h" />
+    <ClInclude Include="include\SettingsState.h" />
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\WinState.h" />

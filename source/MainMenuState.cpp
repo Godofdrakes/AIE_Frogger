@@ -1,8 +1,9 @@
 #include "MainMenuState.h"
 
-extern const int WINDOW_W;
-extern const int WINDOW_H;
-extern bool doExit;
+std::vector<Sprite*> BaseState::mapTiles;
+std::vector<Entity*> BaseState::gameObjects;
+bool BaseState::enableCollision = true;
+float BaseState::speedMod = 1.f;
 
 MainMenuState::MainMenuState(void) {}
 MainMenuState::~MainMenuState(void) {}
@@ -15,6 +16,7 @@ void MainMenuState::Init() {
 void MainMenuState::Update(float deltaTime, StateMachine* a_pSM) {
 	if (IsKeyDown(GLFW_KEY_SPACE)) { a_pSM->PushState( new GameState() ); return; }
 	if (IsKeyDown(GLFW_KEY_ESCAPE)) { delete a_pSM->PopState(); return; }
+	if (IsKeyDown(GLFW_KEY_GRAVE_ACCENT)) { a_pSM->PushState( new SettingsState() ); return; }
 
 }
 
