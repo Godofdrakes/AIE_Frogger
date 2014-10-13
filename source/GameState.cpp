@@ -15,7 +15,11 @@ void GameState::Init() {
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
-	if( IsKeyDown(GLFW_KEY_ESCAPE) ) { a_pSM->PushState( new PauseState() ); return; }
+	if( IsKeyDown(GLFW_KEY_ESCAPE) ) {
+		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) {
+			delete a_pSM->PopState(); delete a_pSM->PopState(); return;
+		} else { a_pSM->PushState( new PauseState() ); return; }
+	}
 
 	for(auto object : gameObjects) { // Iterate through every object in the vector
 		if(dynamic_cast<RiverWater*>(object) != 0) { // If it's RiverWater
@@ -47,6 +51,9 @@ void GameState::Draw() {
 		}
 	}
 
+	DrawString("W/A/S/D to move", 5, 30);
+	DrawString("Esc to pause/quit", WINDOW_W-215, 30);
+
 }
 
 void GameState::Destroy() {
@@ -65,8 +72,8 @@ void GameState::Destroy() {
 
 void GameState::InitPlayer() {
 	Player* player = new Player();
-	player->X(TILE_X*.5f);
-	player->Y(TILE_Y*.5f);
+	player->X((TILE_X*6)+(TILE_X*.5f));
+	player->Y((TILE_Y*1)+(TILE_X*.5f));
 	player->W(TILE_X-2);
 	player->H(TILE_Y-2);
 	player->SpriteID( CreateSprite("./images/pieceRed_border06.png", player->W(), player->H(), player->DrawFromCenter()) );

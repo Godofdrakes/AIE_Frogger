@@ -24,6 +24,11 @@ void MainMenuState::Draw() {
 		DrawSprite( mapTile->SpriteID() );
 	}
 
+	DrawString(WINDOW_NAME.c_str(), 170, TILE_Y*14);
+	DrawString("Press Space to play", 130, TILE_Y*10);
+	DrawString("W/A/S/D to move", 5, 30);
+	DrawString("Esc to pause/quit", WINDOW_W-215, 30);
+
 }
 
 void MainMenuState::Destroy() {

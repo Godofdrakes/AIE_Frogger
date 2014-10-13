@@ -17,6 +17,7 @@
 #include "RiverWater.h" // Class RiverWater : public Entity
 #include "StateMachine.h" // Class StateMachine : public BaseState
 
+extern const std::string WINDOW_NAME;
 extern const int TILE_X;
 extern const int TILE_Y;
 extern const int WINDOW_W;
@@ -24,9 +25,6 @@ extern const int WINDOW_H;
 
 class PauseState : public BaseState {
 private:
-	// Strings
-	std::string askConfirmQuit;
-
 protected:
 public:
 	PauseState(void);

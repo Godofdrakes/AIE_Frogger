@@ -1,7 +1,6 @@
 #include "PauseState.h"
 
 PauseState::PauseState(void) {
-	askConfirmQuit = "Are you sure you want to quit? Y\\N";
 
 }
 
@@ -34,10 +33,10 @@ void PauseState::Draw() {
 		}
 	}
 
-	DrawString(askConfirmQuit.c_str(), 0, WINDOW_H / 2);
+	DrawString("Are you sure you want to quit? Y\\N", 30, WINDOW_H / 2);
 
 }
 
 void PauseState::Destroy() {
-	askConfirmQuit.erase(askConfirmQuit.begin(), askConfirmQuit.end());
+
 }
