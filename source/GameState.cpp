@@ -83,8 +83,7 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
-	// If the player reaches the other side, they have won.
-	if(player->Y() > TILE_Y*13) { playerHasWon = true; }
+	if(player->Y() > TILE_Y*13) { playerHasWon = true; } // If the player reaches the other side, they have won.
 
 	player->Move(deltaTime);
 
