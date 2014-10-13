@@ -86,6 +86,8 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 	// If the player reaches the other side, they have won.
 	if(player->Y() > TILE_Y*13) { playerHasWon = true; }
 
+	player->Move(deltaTime);
+
 	bool touchingWater = false;
 	bool touchingLog = false;
 
@@ -114,8 +116,6 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 		player->X(TILE_X*.5f);
 		player->Y(TILE_Y*.5f);
 	}
-
-	player->Move(deltaTime);
 
 }
 
