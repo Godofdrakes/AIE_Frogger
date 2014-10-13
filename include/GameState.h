@@ -10,6 +10,7 @@
 
 #include "BaseState.h" // Class BaseState
 #include "PauseState.h" // Class PauseState : public BaseState
+#include "WinState.h" // Class WinState : public BaseState
 #include "Player.h" // Class Player : public Entity
 #include "Car.h" // Class Car : public Entity
 #include "RiverLog.h" // Class RiverLog : public Entity
@@ -23,6 +24,7 @@ extern const int WINDOW_H;
 
 class GameState : public BaseState {
 private:
+	bool playerHasWon;
 protected:
 public:
 	GameState(void);

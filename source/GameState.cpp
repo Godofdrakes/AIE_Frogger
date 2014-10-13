@@ -7,6 +7,8 @@ GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
 void GameState::Init() {
+	playerHasWon = false;
+
 	InitRiverWater();
 	InitRiverLog();
 	InitCars();
@@ -15,6 +17,8 @@ void GameState::Init() {
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
+	if(playerHasWon) { delete a_pSM->PopState(); a_pSM->PushState( new WinState() ); return; }
+
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) {
 		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) {
 			delete a_pSM->PopState(); delete a_pSM->PopState(); return;
@@ -88,7 +92,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 
 	bool touchingWater = false;
 	bool touchingLog = false;
-
+	/*
 	for(auto object : gameObjects) { // Iterate through every game object
 		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
 			// Check if the player is hit by a car
@@ -113,7 +117,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 		player->X(TILE_X*.5f);
 		player->Y(TILE_Y*.5f);
 	}
-
+	*/
 }
 
 /* Lane functions */
