@@ -1,10 +1,16 @@
 #ifndef _BASESTATE_H_
 #define _BASESTATE_H_
 
+#include <vector>
+#include "Entity.h"
+
 class StateMachine;
 
-class BaseState
-{
+class BaseState {
+private:
+protected:
+	static std::vector<Sprite*> mapTiles;
+	static std::vector<Entity*> gameObjects;
 public:
 	BaseState(void) {};
 	~BaseState(void) {};

@@ -1,6 +1,6 @@
-#include "Car.h"
+#include "RiverLog.h"
 
-Car::Car(void) {
+RiverLog::RiverLog(void) {
 	speedX = w;
 	speedY = h;
 	xMax = WINDOW_W;
@@ -8,11 +8,11 @@ Car::Car(void) {
 
 }
 
-Car::~Car(void) {
+RiverLog::~RiverLog(void) {
 
 }
 
-void Car::Move(float deltaTime) {
+void RiverLog::Move(float deltaTime) {
 	x += (speedX*deltaTime);
 	y += (speedY*deltaTime);
 
