@@ -1,12 +1,11 @@
 #include "GameState.h"
 
-std::vector<Sprite*> BaseState::mapTiles;
-std::vector<Entity*> BaseState::gameObjects;
-
 GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
 void GameState::Init() {
+	playerHasWon = false;
+
 	InitRiverWater();
 	InitRiverLog();
 	InitCars();
@@ -15,6 +14,8 @@ void GameState::Init() {
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
+	if(playerHasWon) { delete a_pSM->PopState(); a_pSM->PushState( new WinState() ); }
+
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) {
 		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) {
 			delete a_pSM->PopState(); delete a_pSM->PopState(); return;
@@ -68,7 +69,7 @@ void GameState::Destroy() {
 
 }
 
-/* Player functions */
+/* Player Functions */
 
 void GameState::InitPlayer() {
 	Player* player = new Player();
@@ -82,9 +83,11 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
+	// If the player reaches the other side, they have won.
+	if(player->Y() > TILE_Y*13) { playerHasWon = true; }
+
 	bool touchingWater = false;
 	bool touchingLog = false;
-	player->Move(deltaTime);
 
 	for(auto object : gameObjects) { // Iterate through every game object
 		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
@@ -94,12 +97,12 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 				player->X(TILE_X*.5f);
 				player->Y(TILE_Y*.5f);
 			}
-		} else if(dynamic_cast<RiverWater*>(object) != 0) {
+		} else if(dynamic_cast<RiverWater*>(object) != 0) { // If the player is touching the water
 			if(GodQOL::BoxCollide(player->X(), player->Y(), player->W(), player->H(),
 														object->X(), object->Y(), object->W(), object->H())) {
 				touchingWater = true;
 			}
-		} else if(dynamic_cast<RiverLog*>(object) != 0) {
+		} else if(dynamic_cast<RiverLog*>(object) != 0) { // If the player is touching a log
 			if(GodQOL::BoxCollide(player->X(), player->Y(), player->W(), player->H(),
 														object->X(), object->Y(), object->W(), object->H())) {
 				touchingLog = true;
@@ -107,13 +110,17 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 		}
 	}
 	if (touchingWater == true && touchingLog == false) {
+		// If the player is touching the water but not a log then they have died
 		player->X(TILE_X*.5f);
 		player->Y(TILE_Y*.5f);
 	}
 
+	player->Move(deltaTime);
+
 }
 
-/* Lane functions */
+/* Car Functions */
+
 void GameState::InitCars() {
 	// Bunch of code for making each car
 
@@ -194,6 +201,8 @@ void GameState::UpdateCar(Car* car, float deltaTime) {
 
 }
 
+/* Log Functions */
+
 void GameState::InitRiverLog() {
 	// River 1
 	for(int i=0; i<4; ++i) {
@@ -236,6 +245,8 @@ void GameState::InitRiverLog() {
 	}
 
 }
+
+/* Water Functions */
 
 void GameState::UpdateRiverLog(RiverLog* riverLog, float deltaTime) {
 	riverLog->Move(deltaTime);

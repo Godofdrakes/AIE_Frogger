@@ -10,11 +10,12 @@
 
 #include "BaseState.h" // Class BaseState
 #include "PauseState.h" // Class PauseState : public BaseState
+#include "WinState.h" // Class WinState : public BaseState
 #include "Player.h" // Class Player : public Entity
 #include "Car.h" // Class Car : public Entity
 #include "RiverLog.h" // Class RiverLog : public Entity
 #include "RiverWater.h" // Class RiverWater : public Entity
-#include "StateMachine.h" // Class StateMachine : public BaseState
+#include "StateMachine.h" // Class StateMachine
 
 extern const int TILE_X;
 extern const int TILE_Y;
@@ -23,6 +24,7 @@ extern const int WINDOW_H;
 
 class GameState : public BaseState {
 private:
+	bool playerHasWon;
 protected:
 public:
 	GameState(void);

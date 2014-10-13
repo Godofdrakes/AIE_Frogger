@@ -13,81 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{4be4727b-defe-4bb0-a421-f0c735445891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{e913c7fe-eb23-467e-9185-6d388dafb941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Quality of Life">
+      <UniqueIdentifier>{9957d02a-0d81-4ca1-9239-6fc75dd7151c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\On Screen Objects">
+      <UniqueIdentifier>{cc8b0033-aad2-48a9-b64d-af9c0be6d534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\On Screen Objects">
+      <UniqueIdentifier>{71d6d92e-2281-411f-a435-2360ab8f6f17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Quality of Life">
+      <UniqueIdentifier>{13843689-319f-4899-9a1e-d77058097e9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\StateMachine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\MainMenuState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\Car.cpp">
+      <Filter>Source Files\On Screen Objects</Filter>
     </ClCompile>
     <ClCompile Include="source\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\On Screen Objects</Filter>
     </ClCompile>
     <ClCompile Include="source\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Car.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\On Screen Objects</Filter>
     </ClCompile>
     <ClCompile Include="source\RiverLog.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\On Screen Objects</Filter>
     </ClCompile>
     <ClCompile Include="source\RiverWater.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\On Screen Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Sprite.cpp">
+      <Filter>Source Files\On Screen Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuState.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="source\PauseState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="source\StateMachine.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp">
+      <Filter>Source Files\Quality of Life</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinState.cpp">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\BaseState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\MainMenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Entity.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="include\GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\RiverLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\RiverWater.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="include\PauseState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MainMenuState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateMachine.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Car.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RiverLog.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RiverWater.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sprite.h">
+      <Filter>Header Files\On Screen Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h">
+      <Filter>Header Files\Quality of Life</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WinState.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
