@@ -1,21 +1,19 @@
 #ifndef _PAUSESTATE_H_
 #define _PAUSESTATE_H_
 
-#include <iostream>
-#include <cassert>
-#include <vector>
-#include <string> // std::string
+#include <iostream> // std::string
 #include <vld.h> //http://vld.codeplex.com/
 
 #include "AIE.h" // AIE Framework
 #include "godqol.h" // My QoL library
 
-#include "BaseState.h" // Class BaseState
+#include "StateMachine.h" // Class StateMachine : public BaseState
+#include "BaseState.h" // Virtual Class BaseState
+
 #include "Player.h" // Class Player : public Entity
 #include "Car.h" // Class Car : public Entity
 #include "RiverLog.h" // Class RiverLog : public Entity
 #include "RiverWater.h" // Class RiverWater : public Entity
-#include "StateMachine.h" // Class StateMachine : public BaseState
 
 extern const std::string WINDOW_NAME;
 extern const int TILE_X;

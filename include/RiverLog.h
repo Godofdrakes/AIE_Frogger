@@ -1,7 +1,7 @@
 #ifndef _RIVERLOG_H_
 #define _RIVERLOG_H_
 
-#include "Entity.h"
+#include "Entity.h" // Virtual Class Entity : public Sprite
 
 extern const int TILE_X;
 extern const int TILE_Y;

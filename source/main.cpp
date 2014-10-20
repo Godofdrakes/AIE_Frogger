@@ -21,20 +21,20 @@ int main(int argc, char* argv[]) {
     The AIE Framework leaks more than a frightened puppy. I'm ignoring it's memory leaks as much as possible.
     Building in RELEASE will not init VLD.
   */
-  VLDDisable(); // Disabling and reenabling vld around the framework functions will make it ignore any memory allocated durring that time.
+  VLDDisable(); // Disabling and enabling vld around the framework functions will make it ignore any memory allocated durring that time.
 
   //Init the AIE framework
   Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());
   SetBackgroundColour(SColour(0, 0, 0, 255));
 
-  VLDEnable();
+  VLDEnable(); // Make sure it's enabling.
 
   StateMachine state;
   state.PushState( new MainMenuState() );
 
   //Game Loop
   do {
-    VLDEnable(); // Make sure it's reenabled.
+    VLDEnable(); // Make sure it's enabling.
 
     ClearScreen();
     float deltaTime = GetDeltaTime();

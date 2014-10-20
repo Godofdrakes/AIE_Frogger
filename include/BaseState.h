@@ -1,8 +1,8 @@
 #ifndef _BASESTATE_H_
 #define _BASESTATE_H_
 
-#include <vector>
-#include "Entity.h"
+#include <vector> // std::vector
+#include "Entity.h" // Virtual Class Entity : public Sprite
 
 class StateMachine;
 
