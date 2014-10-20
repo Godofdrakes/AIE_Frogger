@@ -11,6 +11,10 @@ private:
 protected:
 	static std::vector<Sprite*> mapTiles;
 	static std::vector<Entity*> gameObjects;
+
+	static bool enableCollision;
+	static float speedMod;
+
 public:
 	BaseState(void) {};
 	~BaseState(void) {};

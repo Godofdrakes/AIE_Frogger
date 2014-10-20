@@ -1,12 +1,11 @@
 #include "GameState.h"
 
-std::vector<Sprite*> BaseState::mapTiles;
-std::vector<Entity*> BaseState::gameObjects;
-
 GameState::GameState(void) {}
 GameState::~GameState(void) {}
 
 void GameState::Init() {
+	playerHasWon = false;
+
 	InitRiverWater();
 	InitRiverLog();
 	InitCars();
@@ -15,6 +14,8 @@ void GameState::Init() {
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
+	if(playerHasWon) { delete a_pSM->PopState(); a_pSM->PushState( new WinState() ); return; }
+
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) {
 		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) {
 			delete a_pSM->PopState(); delete a_pSM->PopState(); return;
@@ -82,9 +83,12 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
+	if(player->Y() > TILE_Y*13) { playerHasWon = true; } // If the player reaches the other side, they have won.
+
+	player->Move(deltaTime);
+
 	bool touchingWater = false;
 	bool touchingLog = false;
-	player->Move(deltaTime);
 
 	for(auto object : gameObjects) { // Iterate through every game object
 		if(dynamic_cast<Car*>(object) != 0) { // If it's a car
