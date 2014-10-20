@@ -1,21 +1,19 @@
-#include "WinState.h"
+#include "FailState.h"
 
-WinState::WinState(void) {
-
-
-}
-
-WinState::~WinState(void) {
-
+FailState::FailState(void) {
 
 }
 
-void WinState::Init() {
-
+FailState::~FailState(void) {
 
 }
 
-void WinState::Update(float deltaTime, StateMachine* a_pSM) {
+
+void FailState::Init() {
+
+}
+
+void FailState::Update(float deltaTime, StateMachine* a_pSM) {
 	if (IsKeyDown(GLFW_KEY_ESCAPE)) { // Return to main menu
 		delete a_pSM->PopState();
 		delete a_pSM->PopState();
@@ -29,19 +27,20 @@ void WinState::Update(float deltaTime, StateMachine* a_pSM) {
 
 }
 
-void WinState::Draw() {
+
+void FailState::Draw() {
 	for(auto mapTile : mapTiles) { // Draw every map tile
 		MoveSprite( mapTile->SpriteID(), mapTile->X(), mapTile->Y() );
 		DrawSprite( mapTile->SpriteID() );
 	}
 
-	DrawString("VICTORY!", (WINDOW_W/2)-50, TILE_Y*14);
+	// Tell the player stuff
+	DrawString("YOU FAILED!", (WINDOW_W/2)-50, TILE_Y*14);
 	DrawString("Press Space to play again", 5, TILE_Y*10);
 	DrawString("Press Esc to quit", WINDOW_W-210, TILE_Y*6);
 
 }
 
-void WinState::Destroy() {
-
+void FailState::Destroy() {
 
 }

@@ -13,5 +13,5 @@ RiverWater::~RiverWater(void) {
 }
 
 void RiverWater::Move(float deltaTime) {
-
+	// Does nothing. Just here cause it's a virtual and thus is required.
 }

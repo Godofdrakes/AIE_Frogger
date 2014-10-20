@@ -1,13 +1,10 @@
 #ifndef _SETTINGSSTATE_H_
 #define _SETTINGSSTATE_H_
 
-#include <iostream>
-#include <string>
+#include "AIE.h" // AIE Framework
 
-#include "AIE.h"
-
-#include "BaseState.h"
-#include "StateMachine.h"
+#include "StateMachine.h" // Class StateMachine : public BaseState
+#include "BaseState.h" // Virtual Class BaseState
 
 extern const int WINDOW_W;
 extern const int WINDOW_H;

@@ -1,8 +1,8 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include "AIE.h"
-#include "Entity.h"
+#include "AIE.h" // AIE Framework
+#include "Entity.h" // Virtual Class Entity : public Sprite
 
 extern const int TILE_X;
 extern const int TILE_Y;

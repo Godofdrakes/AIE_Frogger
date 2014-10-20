@@ -1,8 +1,8 @@
 #ifndef _STATEMACHINE_H_
 #define _STATEMACHINE_H_
 
-#include "BaseState.h"
-#include <list>
+#include <list> // std::list
+#include "BaseState.h" //Virtual Class BaseState
 
 class StateMachine {
 public:
