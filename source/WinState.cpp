@@ -22,8 +22,7 @@ void WinState::Update(float deltaTime, StateMachine* a_pSM) {
 		return;
 	}
 	if (IsKeyDown(GLFW_KEY_SPACE)) { // Unload and the reload the gamestate
-		delete a_pSM->PopState();
-		a_pSM->PushState( new GameState() );
+		delete a_pSM->SwitchState(new GameState());
 		return;
 	}
 
