@@ -5,7 +5,7 @@
 #include "godqol.h" // https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
 
 #include "StateMachine.h" // class StateMachine
-#include "MainMenuState.h" // class MainMenuState : public BaseState
+#include "Loading.h" // class Loading : public BaseState
 
 extern const std::string WINDOW_NAME = "AIE_Frogger";
 
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
   VLDEnable(); // Make sure it's enabled.
 
   StateMachine state;
-  state.PushState( new MainMenuState() );
+  state.PushState( new Loading() );
 
   //Game Loop
   do {
