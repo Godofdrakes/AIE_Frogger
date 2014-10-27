@@ -1,16 +1,18 @@
-#include <iostream>
-#include <string>
-#include <assert.h>
-#include "AIE.h"
-#include <vld.h> //http://vld.codeplex.com/
-#include "godqol.h" //https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
-#include "StateMachine.h"
-#include "MainMenuState.h"
+#include <string> // std::string
+#include <vld.h> // http://vld.codeplex.com/
+
+#include "AIE.h" // AIE Framework
+#include "godqol.h" // https://github.com/Godofdrakes/Godofdrakes-CPP-QOL
+
+#include "StateMachine.h" // class StateMachine
+#include "Loading.h" // class Loading : public BaseState
 
 extern const std::string WINDOW_NAME = "AIE_Frogger";
+
 // A single tile of the map will be this size, and the basic sprite will be just a few pixels smaller than this.
 extern const int TILE_X = 32; // How wide a tile will be
 extern const int TILE_Y = 32; // How tall a tile will be
+
 extern const int WINDOW_W = TILE_X*15; // Number of tiles wide
 extern const int WINDOW_H = TILE_Y*15; // Number of tiles tall
 
@@ -27,14 +29,14 @@ int main(int argc, char* argv[]) {
   Initialise(WINDOW_W, WINDOW_H, false, WINDOW_NAME.c_str());
   SetBackgroundColour(SColour(0, 0, 0, 255));
 
-  VLDEnable(); // Make sure it's enabling.
+  VLDEnable(); // Make sure it's enabled.
 
   StateMachine state;
-  state.PushState( new MainMenuState() );
+  state.PushState( new Loading() );
 
   //Game Loop
   do {
-    VLDEnable(); // Make sure it's enabling.
+    VLDEnable(); // Make sure it's enabled.
 
     ClearScreen();
     float deltaTime = GetDeltaTime();

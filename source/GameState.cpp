@@ -15,8 +15,8 @@ void GameState::Init() {
 }
 
 void GameState::Update (float deltaTime, StateMachine* a_pSM) {
-	if(playerHasWon) { delete a_pSM->PopState(); a_pSM->PushState( new WinState() ); return; } // Did player win?
-	else if(livesLeft <= 0) { delete a_pSM->PopState(); a_pSM->PushState( new FailState() ); return; } // DId player loose?
+	if (playerHasWon) { delete a_pSM->SwitchState(new WinState()); return; } // Did player win?
+	else if (livesLeft <= 0) { delete a_pSM->SwitchState(new FailState()); return; } // Did player loose?
 
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) { // Return to main menu
 		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) { // IF shift is held then we just quit
@@ -81,7 +81,6 @@ void GameState::Destroy() {
 }
 
 /* Player functions */
-
 void GameState::InitPlayer() {
 	Player* player = new Player(); // Create
 	player->X((TILE_X*6)+(TILE_X*.5f)); // Place
@@ -94,7 +93,7 @@ void GameState::InitPlayer() {
 }
 
 void GameState::UpdatePlayer(Player* player, float deltaTime) {
-	if(player->Y() > TILE_Y*13) { playerHasWon = true; } // If the player reaches the other side, they have won.
+	if(player->Y() > TILE_Y*13) { playerHasWon = true; return; } // If the player reaches the other side, they have won.
 
 	player->Move(deltaTime); // First move the player
 
@@ -109,6 +108,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 				player->X((TILE_X*6)+(TILE_X*.5f));
 				player->Y((TILE_Y*1)+(TILE_X*.5f));
 				livesLeft -= 1;
+				return;
 				/*
 					If the player hits a car we shove them back to the start and take a life
 				*/
@@ -131,6 +131,7 @@ void GameState::UpdatePlayer(Player* player, float deltaTime) {
 		player->X((TILE_X*6)+(TILE_X*.5f));
 		player->Y((TILE_Y*1)+(TILE_X*.5f));
 		livesLeft -= 1;
+		return;
 	}
 
 }
@@ -223,6 +224,7 @@ void GameState::UpdateCar(Car* car, float deltaTime) {
 
 }
 
+/* Log functions */
 void GameState::InitRiverLog() {
 	/*
 		The logs are basically cars.
@@ -276,6 +278,7 @@ void GameState::UpdateRiverLog(RiverLog* riverLog, float deltaTime) {
 
 }
 
+/* Water functions */
 void GameState::InitRiverWater() {
 	/*
 		The water is an entity, but it doesn't ever get drawn.

@@ -7,6 +7,7 @@
 #include "BaseState.h" // Cirtual Class BaseState
 #include "SettingsState.h" // Class SettingsState : public BaseState
 #include "GameState.h" // Class GameState : public BaseState
+#include "Loading.h" // Class Loading : public BaseState
 
 #include "Sprite.h" // Class Sprite
 

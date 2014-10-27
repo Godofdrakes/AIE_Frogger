@@ -93,10 +93,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp" />
+    <ClCompile Include="source\BaseState.cpp" />
     <ClCompile Include="source\Car.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\failstate.cpp" />
     <ClCompile Include="source\GameState.cpp" />
+    <ClCompile Include="source\Loading.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MainMenuState.cpp" />
     <ClCompile Include="source\PauseState.cpp" />
@@ -115,6 +117,7 @@
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\failstate.h" />
     <ClInclude Include="include\GameState.h" />
+    <ClInclude Include="include\Loading.h" />
     <ClInclude Include="include\MainMenuState.h" />
     <ClInclude Include="include\PauseState.h" />
     <ClInclude Include="include\Player.h" />

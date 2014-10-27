@@ -1,59 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BaseState">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+    <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAABAAAAgAAAAAAAQAAAABAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAABAAABgAAAAAAAQAAAgBAAAAAIAACAAAAAAA=</HashCode>
       <FileName>include\BaseState.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Car">
-    <Position X="0.5" Y="8.5" Width="2" />
+    <Position X="6.5" Y="16.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIQAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>include\Car.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Entity">
-    <Position X="2" Y="5" Width="1.5" />
+    <Position X="7.25" Y="12" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAIAAAAAAAAAAAAAgACAAEQAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAAIAAAAAAACAAAAAxACAAEQAAAAAAAAAAAAA=</HashCode>
       <FileName>include\Entity.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GameState">
-    <Position X="6.5" Y="3.25" Width="1.75" />
+  <Class Name="FailState">
+    <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AARAEAAAALpAAgAAAAAABQIAAAxAYAABEAgCAAEAoIA=</HashCode>
+      <HashCode>AAQAIAACAAAAAgAAAAAAAAAAAABAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>include\failstate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameState">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAQAAEAIAAAIAgAAAAAAAAAAAAjAAAAAAEACAAOAIAA=</HashCode>
       <FileName>include\GameState.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MainMenuState">
-    <Position X="9" Y="3.25" Width="1.5" />
+    <Position X="3" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAABgAAACCAAAAAAABAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAABgAAACAAAAAAAABAAAAAAAACAAAAAAA=</HashCode>
       <FileName>include\MainMenuState.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="PauseState">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAAAAAgAAAAAAEAAAAABAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>include\PauseState.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Player">
-    <Position X="3.25" Y="8.5" Width="1.5" />
+    <Position X="11" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIgQCAAAAIAAAACAAAAAAAAAAAAAAQACABA=</HashCode>
       <FileName>include\Player.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="RiverLog">
+    <Position X="4.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>include\RiverLog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiverWater">
+    <Position X="8.75" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>include\RiverWater.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingsState">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABgAAAAAAAAAAAABAAAAAAAACACAAAAA=</HashCode>
+      <FileName>include\SettingsState.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Sprite">
-    <Position X="1.5" Y="0.5" Width="2.5" />
+    <Position X="7" Y="7.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAQQIhgAEAIYAI=</HashCode>
       <FileName>include\Sprite.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StateMachine" Collapsed="true">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+  <Class Name="StateMachine">
+    <Position X="14.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQQAIAAAAAAAgAEIAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>include\StateMachine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinState">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAEAAAAAAAAAABAAAAACAACAAAAAAA=</HashCode>
+      <FileName>include\WinState.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
