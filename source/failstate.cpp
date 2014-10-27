@@ -38,9 +38,9 @@ void FailState::Draw() {
 
 	// Tell the player stuff
 	DrawString("YOU FAILED!", (WINDOW_W/2)-50, TILE_Y*14);
-	DrawString("Press Space to play again", 5, TILE_Y*10);
-	DrawString("Press Tab to return to menu.", WINDOW_W-210, TILE_Y*7);
-	DrawString("Press Esc to quit", WINDOW_W-210, TILE_Y*6);
+	DrawString("Press Space to play again", (WINDOW_W/2)-150, TILE_Y*9);
+	DrawString("Press Tab to return to menu.", 0, TILE_Y*8);
+	DrawString("Press Esc to quit", WINDOW_W-210, TILE_Y*7);
 
 }
 

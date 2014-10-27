@@ -38,9 +38,9 @@ void WinState::Draw() {
 
 	// Tell the player stuff
 	DrawString("VICTORY!", (WINDOW_W/2)-50, TILE_Y*14);
-	DrawString("Press Space to play again", WINDOW_W-210, TILE_Y*10);
-	DrawString("Press Tab to return to menu.", 0, TILE_Y*7);
-	DrawString("Press Esc to quit", WINDOW_W-210, TILE_Y*6);
+	DrawString("Press Space to play again", (WINDOW_W/2)-150, TILE_Y*9);
+	DrawString("Press Tab to return to menu.", 0, TILE_Y*8);
+	DrawString("Press Esc to quit", WINDOW_W-210, TILE_Y*7);
 
 }
 
