@@ -23,7 +23,9 @@ void Loading::Update(float deltaTime, StateMachine* a_pSM) {
 }
 
 void Loading::Draw() {
-	DrawString("Loading...", 0, 30);
+	DrawString(WINDOW_NAME.c_str(), 170, TILE_Y*14);
+	DrawString("By Urias", 170, TILE_Y*13);
+	DrawString("Loading...", 0, TILE_Y*1);
 
 }
 
