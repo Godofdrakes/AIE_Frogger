@@ -15,6 +15,9 @@ protected:
 	static bool enableCollision;
 	static float speedMod;
 
+	static int score;
+	static int highScore;
+
 public:
 	BaseState(void) {};
 	~BaseState(void) {};

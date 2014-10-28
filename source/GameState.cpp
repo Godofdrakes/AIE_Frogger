@@ -7,6 +7,12 @@ void GameState::Init() {
 	playerHasWon = false;
 	livesLeft = 3;
 
+	if(FileExists( "data.dat" )) {
+		LoadHighscore( "data.dat" );
+	} else {
+		SaveHighscore( "data.dat" );
+	}
+
 	InitRiverWater();
 	InitRiverLog();
 	InitCars();
@@ -14,14 +20,36 @@ void GameState::Init() {
 
 }
 
-void GameState::Update (float deltaTime, StateMachine* a_pSM) {
-	if (playerHasWon) { delete a_pSM->SwitchState(new WinState()); return; } // Did player win?
-	else if (livesLeft <= 0) { delete a_pSM->SwitchState(new FailState()); return; } // Did player loose?
+void GameState::Update(float deltaTime, StateMachine* a_pSM) {
+	if (playerHasWon) { // Did player win?
+		score = score + 1;
+		if( score > highScore ) {
+			highScore = score;
+			SaveHighscore( "data.dat" );
+		}
+		delete a_pSM->SwitchState(new WinState());
+		return;
+	}
+	if (livesLeft <= 0) {  // Did player loose?
+		if (score > highScore) {
+			highScore = score;
+			SaveHighscore("data.dat");
+		}
+		score = 0;
+		delete a_pSM->SwitchState(new FailState());
+		return;
+	}
 
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) { // Return to main menu
-		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) { // IF shift is held then we just quit
-			delete a_pSM->PopState(); delete a_pSM->PopState(); return;
-		} else { a_pSM->PushState( new PauseState() ); return; }
+		score = 0;
+		highScore = 0;
+		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) { // If shift is held then we just quit
+			delete a_pSM->PopState(); delete a_pSM->PopState();
+			return;
+		} else {
+			a_pSM->PushState( new PauseState() );
+			return;
+		}
 	}
 
 	for(auto object : gameObjects) { // Iterate through every object in the vector
@@ -59,6 +87,19 @@ void GameState::Draw() {
 	}
 
 	// Tell the player stuff
+
+	std::stringstream score_str;
+	score_str << "Score: " << score;
+
+	std::stringstream highScore_str;
+	highScore_str << "High Score: " << highScore;
+
+	std::stringstream livesLeft_str;
+	livesLeft_str << "Lives: " << livesLeft;
+
+	DrawString(highScore_str.str().c_str(), 5, TILE_Y * 15);
+	DrawString(score_str.str().c_str(), 5, TILE_Y * 14);
+	DrawString(livesLeft_str.str().c_str(), 5, TILE_Y * 13);
 	DrawString("W/A/S/D to move", 5, 30);
 	DrawString("Esc to pause/quit", WINDOW_W-215, 30);
 
@@ -305,5 +346,27 @@ void GameState::UpdateRiverWater(RiverWater* riverWater, float deltaTime) {
 	*/
 
 	riverWater->Move(deltaTime);
+
+}
+
+bool GameState::FileExists( const char* name ) { // Return TRUE if file exists and false if it doesn't.
+	std::ifstream file(name);
+	return (bool)file;
+
+}
+
+void GameState::LoadHighscore( char* filename ) {
+	if(FileExists(filename)) {
+		std::fstream file(filename, std::ios::in | std::ios::binary);
+		file.read((char*)&highScore, sizeof(highScore));
+		file.close();
+	}
+
+}
+
+void GameState::SaveHighscore( char* filename ) {
+	std::fstream file(filename, std::ios::out | std::ios::binary);
+	file.write((char*)&highScore, sizeof(highScore));
+	file.close();
 
 }

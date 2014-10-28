@@ -1,6 +1,9 @@
 #ifndef _GAMESTATE_H_
 #define _GAMESTATE_H_
 
+#include <fstream> // std::ifstream
+#include <sstream> // std::stringstream
+
 #include "AIE.h" // AIE Framework
 #include "godqol.h" // My QoL library
 
@@ -50,6 +53,11 @@ public:
 	// Functions for the riverWater
 	void InitRiverWater();
 	void UpdateRiverWater(RiverWater* riverWater, float deltaTime);
+
+	// Functions for saving, loading, and checking the existance of highscores.
+	bool FileExists( const char* name );
+	void LoadHighscore( char* filename );
+	void SaveHighscore( char* filename );
 
 
 };
