@@ -94,8 +94,12 @@ void GameState::Draw() {
 	std::stringstream highScore_str;
 	highScore_str << "High Score: " << highScore;
 
-	DrawString(score_str.str().c_str(), 5, TILE_Y * 14);
+	std::stringstream livesLeft_str;
+	livesLeft_str << "Lives: " << livesLeft;
+
 	DrawString(highScore_str.str().c_str(), 5, TILE_Y * 15);
+	DrawString(score_str.str().c_str(), 5, TILE_Y * 14);
+	DrawString(livesLeft_str.str().c_str(), 5, TILE_Y * 13);
 	DrawString("W/A/S/D to move", 5, 30);
 	DrawString("Esc to pause/quit", WINDOW_W-215, 30);
 

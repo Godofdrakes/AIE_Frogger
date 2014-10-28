@@ -4,4 +4,4 @@ In Game
 	WASD: Movement
 	Escape: Pause
 
-Goal: Reach the other side of the map in three tries or less.
+Goal: Reach the other side as many times as possible.
