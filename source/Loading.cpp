@@ -14,7 +14,6 @@ Loading::~Loading(void) {
 
 void Loading::Init() {
 
-
 }
 
 void Loading::Update(float deltaTime, StateMachine* a_pSM) {
