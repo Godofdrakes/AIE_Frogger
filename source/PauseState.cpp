@@ -13,8 +13,16 @@ void PauseState::Init() {
 }
 
 void PauseState::Update(float deltaTime, StateMachine* a_pSM) {
-	if( IsKeyDown(GLFW_KEY_Y) ) { delete a_pSM->PopState(); delete a_pSM->PopState(); return; } // Return to main menu
-	if( IsKeyDown(GLFW_KEY_N) ) { delete a_pSM->PopState(); return; } // Continue the game
+	if( IsKeyDown(GLFW_KEY_Y) ) { delete a_pSM->PopState();
+		delete a_pSM->PopState();
+		score = 0;
+		highScore = 0;
+		return;
+	} // Return to main menu
+	if( IsKeyDown(GLFW_KEY_N) ) {
+		delete a_pSM->PopState();
+		return;
+	} // Continue the game
 
 }
 

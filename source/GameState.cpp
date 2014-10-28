@@ -41,10 +41,10 @@ void GameState::Update(float deltaTime, StateMachine* a_pSM) {
 	}
 
 	if( IsKeyDown(GLFW_KEY_ESCAPE) ) { // Return to main menu
-		score = 0;
-		highScore = 0;
 		if( IsKeyDown(GLFW_KEY_LEFT_SHIFT) ) { // If shift is held then we just quit
 			delete a_pSM->PopState(); delete a_pSM->PopState();
+			score = 0;
+			highScore = 0;
 			return;
 		} else {
 			a_pSM->PushState( new PauseState() );
