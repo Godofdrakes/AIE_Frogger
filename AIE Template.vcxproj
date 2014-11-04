@@ -92,7 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Godofdrakes-CPP-QOL\godqol.cpp" />
+    <ClCompile Include="Godofdrakes-CPP-QOL\godqol.cpp" />
     <ClCompile Include="source\BaseState.cpp" />
     <ClCompile Include="source\Car.cpp" />
     <ClCompile Include="source\Entity.cpp" />
@@ -111,7 +111,7 @@
     <ClCompile Include="source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Godofdrakes-CPP-QOL\godqol.h" />
+    <ClInclude Include="Godofdrakes-CPP-QOL\godqol.h" />
     <ClInclude Include="include\BaseState.h" />
     <ClInclude Include="include\Car.h" />
     <ClInclude Include="include\Entity.h" />
